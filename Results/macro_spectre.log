@@ -1,0 +1,1085 @@
+
+Cadence (R) Virtuoso (R) Spectre (R) Circuit Simulator
+Version 15.1.0.284.isr1 64bit -- 12 Nov 2015
+Copyright (C) 1989-2015 Cadence Design Systems, Inc. All rights reserved worldwide. Cadence, Virtuoso and Spectre are registered trademarks of Cadence Design Systems, Inc. All others are the property of their respective holders.
+
+Includes RSA BSAFE(R) Cryptographic or Security Protocol Software from RSA Security, Inc.
+
+User: work   Host: work-eda   HostID: 7F0100   PID: 4534
+Memory  available: 228.0407 MB  physical: 1.9533 GB
+Linux   : Red Hat Enterprise Linux Server release 6.5 (Santiago)
+CPU Type: 12th Gen Intel(R) Core(TM) i7-1255U
+All processors running at 2611.2 MHz
+        Socket: Processors
+        0:       0
+        
+System load averages (1min, 5min, 15min) : 1.0 %, 4.0 %, 1.0 %
+This is a virtual machine
+
+
+Simulating `input.scs' on work-eda at 10:03:37 PM, Wed Jul 15, 2026 (process id: 4534).
+Current working directory: /home/disk/simulation/SIM_IC61/GGNMOS_ESD_macro_tb/spectre/Schematic/netlist
+Command line:
+    /opt/MMSIM151/tools/bin/spectre -64 input.scs +escchars +log  \
+        ../psf/spectre.out +inter=mpsc +mpssession=spectre2_3314_2  \
+        -format psfxl -raw ../psf +lqtimeout 900 -maxw 5 -maxn 5
+spectre pid = 4534
+
+Loading /opt/MMSIM151/tools.lnx86/cmi/lib/64bit/5.0/libinfineon_sh.so ...
+Loading /opt/MMSIM151/tools.lnx86/cmi/lib/64bit/5.0/libphilips_o_sh.so ...
+Loading /opt/MMSIM151/tools.lnx86/cmi/lib/64bit/5.0/libphilips_sh.so ...
+Loading /opt/MMSIM151/tools.lnx86/cmi/lib/64bit/5.0/libsparam_sh.so ...
+Loading /opt/MMSIM151/tools.lnx86/cmi/lib/64bit/5.0/libstmodels_sh.so ...
+Reading file:  /home/disk/simulation/SIM_IC61/GGNMOS_ESD_macro_tb/spectre/Schematic/netlist/input.scs
+Reading file:  /opt/MMSIM151/tools.lnx86/spectre/etc/configs/spectre.cfg
+Reading file:  /home/work/gpdk090_v4.6/models/spectre/gpdk090.scs
+Reading file:  /home/work/gpdk090_v4.6/models/spectre/gpdk090_mos.scs
+Reading file:  /home/work/gpdk090_v4.6/models/spectre/gpdk090_mos_iso.scs
+Reading file:  /home/work/gpdk090_v4.6/models/spectre/gpdk090_resistor.scs
+Reading file:  /home/work/gpdk090_v4.6/models/spectre/resd_va.va
+Reading link:  /opt/MMSIM151/tools.lnx86/spectre/etc/ahdl/constants.h
+Reading file:  /opt/MMSIM151/tools.lnx86/spectre/etc/ahdl/constants.vams
+Reading link:  /opt/MMSIM151/tools.lnx86/spectre/etc/ahdl/discipline.h
+Reading file:  /opt/MMSIM151/tools.lnx86/spectre/etc/ahdl/disciplines.vams
+Reading file:  /home/work/gpdk090_v4.6/models/spectre/rnoise_va.va
+Reading file:  /home/work/gpdk090_v4.6/models/spectre/gpdk090_capacitor.scs
+Reading file:  /home/work/gpdk090_v4.6/models/spectre/gpdk090_diode.scs
+Reading file:  /home/work/gpdk090_v4.6/models/spectre/gpdk090_bipolar.scs
+Time for NDB Parsing: CPU = 129.98 ms, elapsed = 329.862 ms.
+Time accumulated: CPU = 156.975 ms, elapsed = 329.866 ms.
+Peak resident memory used = 46.5 Mbytes.
+
+
+The CPU load for active processors is :
+        Spectre  0 (100.0 %)    
+        Other   
+Time for Elaboration: CPU = 14.998 ms, elapsed = 36.041 ms.
+Time accumulated: CPU = 171.973 ms, elapsed = 366.055 ms.
+Peak resident memory used = 52.5 Mbytes.
+
+Time for EDB Visiting: CPU = 3.999 ms, elapsed = 5.97 ms.
+Time accumulated: CPU = 175.972 ms, elapsed = 375.522 ms.
+Peak resident memory used = 53.1 Mbytes.
+
+
+Warning from spectre during initial setup.
+    WARNING (CMI-2477): I8.M0: `Rds' = 130.052 nOhm is less than 0.001. Set to 0.
+
+
+Global user options:
+             reltol = 0.001
+            vabstol = 1e-06
+            iabstol = 1e-12
+               temp = 27
+               tnom = 27
+             scalem = 1
+              scale = 1
+               gmin = 1e-12
+             rforce = 1
+           maxnotes = 5
+           maxwarns = 5
+             digits = 5
+               cols = 80
+             pivrel = 0.001
+           sensfile = ../psf/sens.output
+     checklimitdest = psf
+               save = allpub
+
+Scoped user options:
+
+Circuit inventory:
+              nodes 2
+                bjt 1     
+            bsim3v3 1     
+            isource 1     
+           resistor 1     
+               vccs 1     
+
+Analysis and control statement inventory:
+                 dc 1     
+               info 6     
+
+Output statements:
+             .probe 0     
+           .measure 0     
+               save 0     
+
+
+Warning from spectre during initial setup.
+    WARNING (CMI-2477): I8.M0: `Rds' = 130.052 nOhm is less than 0.001. Set to 0.
+
+Time for parsing: CPU = 4.999 ms, elapsed = 31.1031 ms.
+Time accumulated: CPU = 180.971 ms, elapsed = 406.815 ms.
+Peak resident memory used = 54.2 Mbytes.
+
+~~~~~~~~~~~~~~~~~~~~~~
+Pre-Simulation Summary
+~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~
+Entering remote command mode using MPSC service (spectre, ipi, v0.0, spectre2_3314_2, ).
+
+Warning from spectre.
+    WARNING (SPECTRE-16707): Only tran supports psfxl format, result of other analyses will be in psfbin format.
+
+
+*******************************************
+DC Analysis `dc': Ipad = (1e-09 -> 100e-03)
+*******************************************
+
+Warning from spectre during DC analysis `dc'.
+    WARNING (CMI-2477): I8.M0: `Rds' = 130.052 nOhm is less than 0.001. Set to 0.
+
+
+Opening the PSF file ../psf/dc.dc ...
+Important parameter values:
+    reltol = 1e-03
+    abstol(V) = 1 uV
+    abstol(I) = 1 pA
+    temp = 27 C
+    tnom = 27 C
+    tempeffects = all
+    gmindc = 1 pS
+
+Warning from spectre at Ipad = 1.12202e-09 during DC analysis `dc'.
+    WARNING (CMI-2477): I8.M0: `Rds' = 130.052 nOhm is less than 0.001. Set to 0.
+Warning from spectre at Ipad = 1.25893e-09 during DC analysis `dc'.
+    WARNING (CMI-2477): I8.M0: `Rds' = 130.052 nOhm is less than 0.001. Set to 0.
+Warning from spectre at Ipad = 1.41254e-09 during DC analysis `dc'.
+    WARNING (CMI-2477): I8.M0: `Rds' = 130.052 nOhm is less than 0.001. Set to 0.
+Warning from spectre at Ipad = 1.58489e-09 during DC analysis `dc'.
+    WARNING (CMI-2477): I8.M0: `Rds' = 130.052 nOhm is less than 0.001. Set to 0.
+        Further occurrences of this warning will be suppressed.
+
+    dc: Ipad = 1.585e-09    (2.5 %), step = 172.4e-12    (625 m%)
+    dc: Ipad = 1.778e-09   (3.12 %), step = 193.4e-12    (625 m%)
+    dc: Ipad = 1.995e-09   (3.75 %), step = 217e-12      (625 m%)
+    dc: Ipad = 2.239e-09   (4.38 %), step = 243.5e-12    (625 m%)
+    dc: Ipad = 2.512e-09      (5 %), step = 273.2e-12    (625 m%)
+    dc: Ipad = 2.818e-09   (5.62 %), step = 306.5e-12    (625 m%)
+    dc: Ipad = 3.162e-09   (6.25 %), step = 343.9e-12    (625 m%)
+    dc: Ipad = 3.548e-09   (6.88 %), step = 385.9e-12    (625 m%)
+    dc: Ipad = 3.981e-09    (7.5 %), step = 432.9e-12    (625 m%)
+    dc: Ipad = 4.467e-09   (8.12 %), step = 485.8e-12    (625 m%)
+    dc: Ipad = 5.012e-09   (8.75 %), step = 545e-12      (625 m%)
+    dc: Ipad = 5.623e-09   (9.38 %), step = 611.5e-12    (625 m%)
+    dc: Ipad = 6.31e-09      (10 %), step = 686.2e-12    (625 m%)
+    dc: Ipad = 7.079e-09   (10.6 %), step = 769.9e-12    (625 m%)
+    dc: Ipad = 7.943e-09   (11.2 %), step = 863.8e-12    (625 m%)
+    dc: Ipad = 8.913e-09   (11.9 %), step = 969.2e-12    (625 m%)
+    dc: Ipad = 10e-09      (12.5 %), step = 1.087e-09    (625 m%)
+    dc: Ipad = 11.22e-09   (13.1 %), step = 1.22e-09     (625 m%)
+    dc: Ipad = 12.59e-09   (13.8 %), step = 1.369e-09    (625 m%)
+    dc: Ipad = 14.13e-09   (14.4 %), step = 1.536e-09    (625 m%)
+    dc: Ipad = 15.85e-09     (15 %), step = 1.724e-09    (625 m%)
+    dc: Ipad = 17.78e-09   (15.6 %), step = 1.934e-09    (625 m%)
+    dc: Ipad = 19.95e-09   (16.2 %), step = 2.17e-09     (625 m%)
+    dc: Ipad = 22.39e-09   (16.9 %), step = 2.435e-09    (625 m%)
+    dc: Ipad = 25.12e-09   (17.5 %), step = 2.732e-09    (625 m%)
+    dc: Ipad = 28.18e-09   (18.1 %), step = 3.065e-09    (625 m%)
+    dc: Ipad = 31.62e-09   (18.8 %), step = 3.439e-09    (625 m%)
+    dc: Ipad = 35.48e-09   (19.4 %), step = 3.859e-09    (625 m%)
+    dc: Ipad = 39.81e-09     (20 %), step = 4.329e-09    (625 m%)
+    dc: Ipad = 44.67e-09   (20.6 %), step = 4.858e-09    (625 m%)
+    dc: Ipad = 50.12e-09   (21.2 %), step = 5.45e-09     (625 m%)
+    dc: Ipad = 56.23e-09   (21.9 %), step = 6.115e-09    (625 m%)
+    dc: Ipad = 63.1e-09    (22.5 %), step = 6.862e-09    (625 m%)
+    dc: Ipad = 70.79e-09   (23.1 %), step = 7.699e-09    (625 m%)
+    dc: Ipad = 79.43e-09   (23.8 %), step = 8.638e-09    (625 m%)
+    dc: Ipad = 89.13e-09   (24.4 %), step = 9.692e-09    (625 m%)
+    dc: Ipad = 100e-09       (25 %), step = 10.87e-09    (625 m%)
+    dc: Ipad = 112.2e-09   (25.6 %), step = 12.2e-09     (625 m%)
+    dc: Ipad = 125.9e-09   (26.2 %), step = 13.69e-09    (625 m%)
+    dc: Ipad = 141.3e-09   (26.9 %), step = 15.36e-09    (625 m%)
+    dc: Ipad = 158.5e-09   (27.5 %), step = 17.24e-09    (625 m%)
+    dc: Ipad = 177.8e-09   (28.1 %), step = 19.34e-09    (625 m%)
+    dc: Ipad = 199.5e-09   (28.7 %), step = 21.7e-09     (625 m%)
+    dc: Ipad = 223.9e-09   (29.4 %), step = 24.35e-09    (625 m%)
+    dc: Ipad = 251.2e-09     (30 %), step = 27.32e-09    (625 m%)
+    dc: Ipad = 281.8e-09   (30.6 %), step = 30.65e-09    (625 m%)
+    dc: Ipad = 316.2e-09   (31.2 %), step = 34.39e-09    (625 m%)
+    dc: Ipad = 354.8e-09   (31.9 %), step = 38.59e-09    (625 m%)
+    dc: Ipad = 398.1e-09   (32.5 %), step = 43.29e-09    (625 m%)
+    dc: Ipad = 446.7e-09   (33.1 %), step = 48.58e-09    (625 m%)
+    dc: Ipad = 501.2e-09   (33.8 %), step = 54.5e-09     (625 m%)
+    dc: Ipad = 562.3e-09   (34.4 %), step = 61.15e-09    (625 m%)
+    dc: Ipad = 631e-09       (35 %), step = 68.62e-09    (625 m%)
+    dc: Ipad = 707.9e-09   (35.6 %), step = 76.99e-09    (625 m%)
+    dc: Ipad = 794.3e-09   (36.2 %), step = 86.38e-09    (625 m%)
+    dc: Ipad = 891.3e-09   (36.9 %), step = 96.92e-09    (625 m%)
+    dc: Ipad = 1e-06       (37.5 %), step = 108.7e-09    (625 m%)
+    dc: Ipad = 1.122e-06   (38.1 %), step = 122e-09      (625 m%)
+    dc: Ipad = 1.259e-06   (38.8 %), step = 136.9e-09    (625 m%)
+    dc: Ipad = 1.413e-06   (39.4 %), step = 153.6e-09    (625 m%)
+    dc: Ipad = 1.585e-06     (40 %), step = 172.4e-09    (625 m%)
+    dc: Ipad = 1.778e-06   (40.6 %), step = 193.4e-09    (625 m%)
+    dc: Ipad = 1.995e-06   (41.2 %), step = 217e-09      (625 m%)
+    dc: Ipad = 2.239e-06   (41.9 %), step = 243.5e-09    (625 m%)
+    dc: Ipad = 2.512e-06   (42.5 %), step = 273.2e-09    (625 m%)
+    dc: Ipad = 2.818e-06   (43.1 %), step = 306.5e-09    (625 m%)
+    dc: Ipad = 3.162e-06   (43.8 %), step = 343.9e-09    (625 m%)
+    dc: Ipad = 3.548e-06   (44.4 %), step = 385.9e-09    (625 m%)
+    dc: Ipad = 3.981e-06     (45 %), step = 432.9e-09    (625 m%)
+    dc: Ipad = 4.467e-06   (45.6 %), step = 485.8e-09    (625 m%)
+    dc: Ipad = 5.012e-06   (46.2 %), step = 545e-09      (625 m%)
+    dc: Ipad = 5.623e-06   (46.9 %), step = 611.5e-09    (625 m%)
+    dc: Ipad = 6.31e-06    (47.5 %), step = 686.2e-09    (625 m%)
+    dc: Ipad = 7.079e-06   (48.1 %), step = 769.9e-09    (625 m%)
+    dc: Ipad = 7.943e-06   (48.8 %), step = 863.8e-09    (625 m%)
+    dc: Ipad = 8.913e-06   (49.4 %), step = 969.2e-09    (625 m%)
+    dc: Ipad = 10e-06        (50 %), step = 1.087e-06    (625 m%)
+    dc: Ipad = 11.22e-06   (50.6 %), step = 1.22e-06     (625 m%)
+    dc: Ipad = 12.59e-06   (51.2 %), step = 1.369e-06    (625 m%)
+    dc: Ipad = 14.13e-06   (51.9 %), step = 1.536e-06    (625 m%)
+    dc: Ipad = 15.85e-06   (52.5 %), step = 1.724e-06    (625 m%)
+    dc: Ipad = 17.78e-06   (53.1 %), step = 1.934e-06    (625 m%)
+    dc: Ipad = 19.95e-06   (53.8 %), step = 2.17e-06     (625 m%)
+    dc: Ipad = 22.39e-06   (54.4 %), step = 2.435e-06    (625 m%)
+    dc: Ipad = 25.12e-06     (55 %), step = 2.732e-06    (625 m%)
+    dc: Ipad = 28.18e-06   (55.6 %), step = 3.065e-06    (625 m%)
+    dc: Ipad = 31.62e-06   (56.2 %), step = 3.439e-06    (625 m%)
+    dc: Ipad = 35.48e-06   (56.9 %), step = 3.859e-06    (625 m%)
+    dc: Ipad = 39.81e-06   (57.5 %), step = 4.329e-06    (625 m%)
+    dc: Ipad = 44.67e-06   (58.1 %), step = 4.858e-06    (625 m%)
+    dc: Ipad = 50.12e-06   (58.8 %), step = 5.45e-06     (625 m%)
+    dc: Ipad = 56.23e-06   (59.4 %), step = 6.115e-06    (625 m%)
+    dc: Ipad = 63.1e-06      (60 %), step = 6.862e-06    (625 m%)
+    dc: Ipad = 70.79e-06   (60.6 %), step = 7.699e-06    (625 m%)
+    dc: Ipad = 79.43e-06   (61.3 %), step = 8.638e-06    (625 m%)
+    dc: Ipad = 89.13e-06   (61.9 %), step = 9.692e-06    (625 m%)
+    dc: Ipad = 100e-06     (62.5 %), step = 10.87e-06    (625 m%)
+    dc: Ipad = 112.2e-06   (63.1 %), step = 12.2e-06     (625 m%)
+    dc: Ipad = 125.9e-06   (63.7 %), step = 13.69e-06    (625 m%)
+    dc: Ipad = 141.3e-06   (64.4 %), step = 15.36e-06    (625 m%)
+    dc: Ipad = 158.5e-06     (65 %), step = 17.24e-06    (625 m%)
+    dc: Ipad = 177.8e-06   (65.6 %), step = 19.34e-06    (625 m%)
+    dc: Ipad = 199.5e-06   (66.2 %), step = 21.7e-06     (625 m%)
+    dc: Ipad = 223.9e-06   (66.9 %), step = 24.35e-06    (625 m%)
+    dc: Ipad = 251.2e-06   (67.5 %), step = 27.32e-06    (625 m%)
+    dc: Ipad = 281.8e-06   (68.1 %), step = 30.65e-06    (625 m%)
+    dc: Ipad = 316.2e-06   (68.8 %), step = 34.39e-06    (625 m%)
+    dc: Ipad = 354.8e-06   (69.4 %), step = 38.59e-06    (625 m%)
+    dc: Ipad = 398.1e-06     (70 %), step = 43.29e-06    (625 m%)
+    dc: Ipad = 446.7e-06   (70.6 %), step = 48.58e-06    (625 m%)
+    dc: Ipad = 501.2e-06   (71.2 %), step = 54.5e-06     (625 m%)
+    dc: Ipad = 562.3e-06   (71.9 %), step = 61.15e-06    (625 m%)
+    dc: Ipad = 631e-06     (72.5 %), step = 68.62e-06    (625 m%)
+    dc: Ipad = 707.9e-06   (73.1 %), step = 76.99e-06    (625 m%)
+    dc: Ipad = 794.3e-06   (73.8 %), step = 86.38e-06    (625 m%)
+    dc: Ipad = 891.3e-06   (74.4 %), step = 96.92e-06    (625 m%)
+    dc: Ipad = 1e-03         (75 %), step = 108.7e-06    (625 m%)
+    dc: Ipad = 1.122e-03   (75.6 %), step = 122e-06      (625 m%)
+    dc: Ipad = 1.259e-03   (76.2 %), step = 136.9e-06    (625 m%)
+    dc: Ipad = 1.413e-03   (76.9 %), step = 153.6e-06    (625 m%)
+    dc: Ipad = 1.585e-03   (77.5 %), step = 172.4e-06    (625 m%)
+    dc: Ipad = 1.778e-03   (78.1 %), step = 193.4e-06    (625 m%)
+    dc: Ipad = 1.995e-03   (78.8 %), step = 217e-06      (625 m%)
+    dc: Ipad = 2.239e-03   (79.4 %), step = 243.5e-06    (625 m%)
+    dc: Ipad = 2.512e-03     (80 %), step = 273.2e-06    (625 m%)
+    dc: Ipad = 2.818e-03   (80.6 %), step = 306.5e-06    (625 m%)
+    dc: Ipad = 3.162e-03   (81.2 %), step = 343.9e-06    (625 m%)
+    dc: Ipad = 3.548e-03   (81.9 %), step = 385.9e-06    (625 m%)
+    dc: Ipad = 3.981e-03   (82.5 %), step = 432.9e-06    (625 m%)
+    dc: Ipad = 4.467e-03   (83.1 %), step = 485.8e-06    (625 m%)
+    dc: Ipad = 5.012e-03   (83.8 %), step = 545e-06      (625 m%)
+    dc: Ipad = 5.623e-03   (84.4 %), step = 611.5e-06    (625 m%)
+    dc: Ipad = 6.31e-03      (85 %), step = 686.2e-06    (625 m%)
+    dc: Ipad = 7.079e-03   (85.6 %), step = 769.9e-06    (625 m%)
+    dc: Ipad = 7.943e-03   (86.2 %), step = 863.8e-06    (625 m%)
+    dc: Ipad = 8.913e-03   (86.9 %), step = 969.2e-06    (625 m%)
+    dc: Ipad = 10e-03      (87.5 %), step = 1.087e-03    (625 m%)
+    dc: Ipad = 11.22e-03   (88.1 %), step = 1.22e-03     (625 m%)
+    dc: Ipad = 12.59e-03   (88.8 %), step = 1.369e-03    (625 m%)
+    dc: Ipad = 14.13e-03   (89.4 %), step = 1.536e-03    (625 m%)
+    dc: Ipad = 15.85e-03     (90 %), step = 1.724e-03    (625 m%)
+    dc: Ipad = 17.78e-03   (90.6 %), step = 1.934e-03    (625 m%)
+    dc: Ipad = 19.95e-03   (91.2 %), step = 2.17e-03     (625 m%)
+    dc: Ipad = 22.39e-03   (91.9 %), step = 2.435e-03    (625 m%)
+
+Warning from spectre at Ipad = 25.1189e-03 during DC analysis `dc'.
+    WARNING (CMI-2377): I8.M0: Vgd has exceeded the oxide breakdown voltage of `vbox' = 16.8 V.
+
+    dc: Ipad = 25.12e-03   (92.5 %), step = 2.732e-03    (625 m%)
+
+Warning from spectre at Ipad = 28.1838e-03 during DC analysis `dc'.
+    WARNING (CMI-2377): I8.M0: Vgd has exceeded the oxide breakdown voltage of `vbox' = 16.8 V.
+
+    dc: Ipad = 28.18e-03   (93.1 %), step = 3.065e-03    (625 m%)
+
+Warning from spectre at Ipad = 31.6228e-03 during DC analysis `dc'.
+    WARNING (CMI-2377): I8.M0: Vgd has exceeded the oxide breakdown voltage of `vbox' = 16.8 V.
+
+    dc: Ipad = 31.62e-03   (93.8 %), step = 3.439e-03    (625 m%)
+
+Warning from spectre at Ipad = 35.4813e-03 during DC analysis `dc'.
+    WARNING (CMI-2377): I8.M0: Vgd has exceeded the oxide breakdown voltage of `vbox' = 16.8 V.
+
+    dc: Ipad = 35.48e-03   (94.4 %), step = 3.859e-03    (625 m%)
+
+Warning from spectre at Ipad = 39.8107e-03 during DC analysis `dc'.
+    WARNING (CMI-2377): I8.M0: Vgd has exceeded the oxide breakdown voltage of `vbox' = 16.8 V.
+        Further occurrences of this warning will be suppressed.
+
+    dc: Ipad = 39.81e-03     (95 %), step = 4.329e-03    (625 m%)
+    dc: Ipad = 44.67e-03   (95.6 %), step = 4.858e-03    (625 m%)
+    dc: Ipad = 50.12e-03   (96.2 %), step = 5.45e-03     (625 m%)
+    dc: Ipad = 56.23e-03   (96.9 %), step = 6.115e-03    (625 m%)
+    dc: Ipad = 63.1e-03    (97.5 %), step = 6.862e-03    (625 m%)
+    dc: Ipad = 70.79e-03   (98.1 %), step = 7.699e-03    (625 m%)
+    dc: Ipad = 79.43e-03   (98.8 %), step = 8.638e-03    (625 m%)
+    dc: Ipad = 89.13e-03   (99.4 %), step = 9.692e-03    (625 m%)
+    dc: Ipad = 100e-03      (100 %), step = 10.87e-03    (625 m%)
+Total time required for dc analysis `dc': CPU = 46.994 ms, elapsed = 118.281 ms.
+Time accumulated: CPU = 229.965 ms, elapsed = 580.898 ms.
+Peak resident memory used = 55.6 Mbytes.
+
+
+Notice from spectre.
+    164 warnings suppressed.
+Warning from spectre.
+    WARNING (CMI-2477): I8.M0: `Rds' = 130.052 nOhm is less than 0.001. Set to 0.
+
+modelParameter: writing model parameter values to rawfile.
+
+Opening the PSF file ../psf/modelParameter.info ...
+element: writing instance parameter values to rawfile.
+
+Opening the PSF file ../psf/element.info ...
+outputParameter: writing output parameter values to rawfile.
+
+Opening the PSF file ../psf/outputParameter.info ...
+designParamVals: writing netlist parameters to rawfile.
+
+Opening the PSFASCII file ../psf/designParamVals.info ...
+primitives: writing primitives to rawfile.
+
+Opening the PSFASCII file ../psf/primitives.info.primitives ...
+subckts: writing subcircuits to rawfile.
+
+Opening the PSFASCII file ../psf/subckts.info.subckts ...
+
+Warning from spectre.
+    WARNING (CMI-2477): I8.M0: `Rds' = 130.052 nOhm is less than 0.001. Set to 0.
+    WARNING (SPECTRE-16707): Only tran supports psfxl format, result of other analyses will be in psfbin format.
+
+
+*******************************************
+DC Analysis `dc': Ipad = (1e-09 -> 100e-03)
+*******************************************
+
+Warning from spectre during DC analysis `dc'.
+    WARNING (CMI-2477): I8.M0: `Rds' = 130.052 nOhm is less than 0.001. Set to 0.
+
+
+Opening the PSF file ../psf/dc.dc ...
+Important parameter values:
+    reltol = 1e-03
+    abstol(V) = 1 uV
+    abstol(I) = 1 pA
+    temp = 27 C
+    tnom = 27 C
+    tempeffects = all
+    gmindc = 1 pS
+
+Warning from spectre at Ipad = 1.12202e-09 during DC analysis `dc'.
+    WARNING (CMI-2477): I8.M0: `Rds' = 130.052 nOhm is less than 0.001. Set to 0.
+Warning from spectre at Ipad = 1.25893e-09 during DC analysis `dc'.
+    WARNING (CMI-2477): I8.M0: `Rds' = 130.052 nOhm is less than 0.001. Set to 0.
+Warning from spectre at Ipad = 1.41254e-09 during DC analysis `dc'.
+    WARNING (CMI-2477): I8.M0: `Rds' = 130.052 nOhm is less than 0.001. Set to 0.
+Warning from spectre at Ipad = 1.58489e-09 during DC analysis `dc'.
+    WARNING (CMI-2477): I8.M0: `Rds' = 130.052 nOhm is less than 0.001. Set to 0.
+        Further occurrences of this warning will be suppressed.
+
+    dc: Ipad = 1.585e-09    (2.5 %), step = 172.4e-12    (625 m%)
+    dc: Ipad = 1.778e-09   (3.12 %), step = 193.4e-12    (625 m%)
+    dc: Ipad = 1.995e-09   (3.75 %), step = 217e-12      (625 m%)
+    dc: Ipad = 2.239e-09   (4.38 %), step = 243.5e-12    (625 m%)
+    dc: Ipad = 2.512e-09      (5 %), step = 273.2e-12    (625 m%)
+    dc: Ipad = 2.818e-09   (5.62 %), step = 306.5e-12    (625 m%)
+    dc: Ipad = 3.162e-09   (6.25 %), step = 343.9e-12    (625 m%)
+    dc: Ipad = 3.548e-09   (6.88 %), step = 385.9e-12    (625 m%)
+    dc: Ipad = 3.981e-09    (7.5 %), step = 432.9e-12    (625 m%)
+    dc: Ipad = 4.467e-09   (8.12 %), step = 485.8e-12    (625 m%)
+    dc: Ipad = 5.012e-09   (8.75 %), step = 545e-12      (625 m%)
+    dc: Ipad = 5.623e-09   (9.38 %), step = 611.5e-12    (625 m%)
+    dc: Ipad = 6.31e-09      (10 %), step = 686.2e-12    (625 m%)
+    dc: Ipad = 7.079e-09   (10.6 %), step = 769.9e-12    (625 m%)
+    dc: Ipad = 7.943e-09   (11.2 %), step = 863.8e-12    (625 m%)
+    dc: Ipad = 8.913e-09   (11.9 %), step = 969.2e-12    (625 m%)
+    dc: Ipad = 10e-09      (12.5 %), step = 1.087e-09    (625 m%)
+    dc: Ipad = 11.22e-09   (13.1 %), step = 1.22e-09     (625 m%)
+    dc: Ipad = 12.59e-09   (13.8 %), step = 1.369e-09    (625 m%)
+    dc: Ipad = 14.13e-09   (14.4 %), step = 1.536e-09    (625 m%)
+    dc: Ipad = 15.85e-09     (15 %), step = 1.724e-09    (625 m%)
+    dc: Ipad = 17.78e-09   (15.6 %), step = 1.934e-09    (625 m%)
+    dc: Ipad = 19.95e-09   (16.2 %), step = 2.17e-09     (625 m%)
+    dc: Ipad = 22.39e-09   (16.9 %), step = 2.435e-09    (625 m%)
+    dc: Ipad = 25.12e-09   (17.5 %), step = 2.732e-09    (625 m%)
+    dc: Ipad = 28.18e-09   (18.1 %), step = 3.065e-09    (625 m%)
+    dc: Ipad = 31.62e-09   (18.8 %), step = 3.439e-09    (625 m%)
+    dc: Ipad = 35.48e-09   (19.4 %), step = 3.859e-09    (625 m%)
+    dc: Ipad = 39.81e-09     (20 %), step = 4.329e-09    (625 m%)
+    dc: Ipad = 44.67e-09   (20.6 %), step = 4.858e-09    (625 m%)
+    dc: Ipad = 50.12e-09   (21.2 %), step = 5.45e-09     (625 m%)
+    dc: Ipad = 56.23e-09   (21.9 %), step = 6.115e-09    (625 m%)
+    dc: Ipad = 63.1e-09    (22.5 %), step = 6.862e-09    (625 m%)
+    dc: Ipad = 70.79e-09   (23.1 %), step = 7.699e-09    (625 m%)
+    dc: Ipad = 79.43e-09   (23.8 %), step = 8.638e-09    (625 m%)
+    dc: Ipad = 89.13e-09   (24.4 %), step = 9.692e-09    (625 m%)
+    dc: Ipad = 100e-09       (25 %), step = 10.87e-09    (625 m%)
+    dc: Ipad = 112.2e-09   (25.6 %), step = 12.2e-09     (625 m%)
+    dc: Ipad = 125.9e-09   (26.2 %), step = 13.69e-09    (625 m%)
+    dc: Ipad = 141.3e-09   (26.9 %), step = 15.36e-09    (625 m%)
+    dc: Ipad = 158.5e-09   (27.5 %), step = 17.24e-09    (625 m%)
+    dc: Ipad = 177.8e-09   (28.1 %), step = 19.34e-09    (625 m%)
+    dc: Ipad = 199.5e-09   (28.7 %), step = 21.7e-09     (625 m%)
+    dc: Ipad = 223.9e-09   (29.4 %), step = 24.35e-09    (625 m%)
+    dc: Ipad = 251.2e-09     (30 %), step = 27.32e-09    (625 m%)
+    dc: Ipad = 281.8e-09   (30.6 %), step = 30.65e-09    (625 m%)
+    dc: Ipad = 316.2e-09   (31.2 %), step = 34.39e-09    (625 m%)
+    dc: Ipad = 354.8e-09   (31.9 %), step = 38.59e-09    (625 m%)
+    dc: Ipad = 398.1e-09   (32.5 %), step = 43.29e-09    (625 m%)
+    dc: Ipad = 446.7e-09   (33.1 %), step = 48.58e-09    (625 m%)
+    dc: Ipad = 501.2e-09   (33.8 %), step = 54.5e-09     (625 m%)
+    dc: Ipad = 562.3e-09   (34.4 %), step = 61.15e-09    (625 m%)
+    dc: Ipad = 631e-09       (35 %), step = 68.62e-09    (625 m%)
+    dc: Ipad = 707.9e-09   (35.6 %), step = 76.99e-09    (625 m%)
+    dc: Ipad = 794.3e-09   (36.2 %), step = 86.38e-09    (625 m%)
+    dc: Ipad = 891.3e-09   (36.9 %), step = 96.92e-09    (625 m%)
+    dc: Ipad = 1e-06       (37.5 %), step = 108.7e-09    (625 m%)
+    dc: Ipad = 1.122e-06   (38.1 %), step = 122e-09      (625 m%)
+    dc: Ipad = 1.259e-06   (38.8 %), step = 136.9e-09    (625 m%)
+    dc: Ipad = 1.413e-06   (39.4 %), step = 153.6e-09    (625 m%)
+    dc: Ipad = 1.585e-06     (40 %), step = 172.4e-09    (625 m%)
+    dc: Ipad = 1.778e-06   (40.6 %), step = 193.4e-09    (625 m%)
+    dc: Ipad = 1.995e-06   (41.2 %), step = 217e-09      (625 m%)
+    dc: Ipad = 2.239e-06   (41.9 %), step = 243.5e-09    (625 m%)
+    dc: Ipad = 2.512e-06   (42.5 %), step = 273.2e-09    (625 m%)
+    dc: Ipad = 2.818e-06   (43.1 %), step = 306.5e-09    (625 m%)
+    dc: Ipad = 3.162e-06   (43.8 %), step = 343.9e-09    (625 m%)
+    dc: Ipad = 3.548e-06   (44.4 %), step = 385.9e-09    (625 m%)
+    dc: Ipad = 3.981e-06     (45 %), step = 432.9e-09    (625 m%)
+    dc: Ipad = 4.467e-06   (45.6 %), step = 485.8e-09    (625 m%)
+    dc: Ipad = 5.012e-06   (46.2 %), step = 545e-09      (625 m%)
+    dc: Ipad = 5.623e-06   (46.9 %), step = 611.5e-09    (625 m%)
+    dc: Ipad = 6.31e-06    (47.5 %), step = 686.2e-09    (625 m%)
+    dc: Ipad = 7.079e-06   (48.1 %), step = 769.9e-09    (625 m%)
+    dc: Ipad = 7.943e-06   (48.8 %), step = 863.8e-09    (625 m%)
+    dc: Ipad = 8.913e-06   (49.4 %), step = 969.2e-09    (625 m%)
+    dc: Ipad = 10e-06        (50 %), step = 1.087e-06    (625 m%)
+    dc: Ipad = 11.22e-06   (50.6 %), step = 1.22e-06     (625 m%)
+    dc: Ipad = 12.59e-06   (51.2 %), step = 1.369e-06    (625 m%)
+    dc: Ipad = 14.13e-06   (51.9 %), step = 1.536e-06    (625 m%)
+    dc: Ipad = 15.85e-06   (52.5 %), step = 1.724e-06    (625 m%)
+    dc: Ipad = 17.78e-06   (53.1 %), step = 1.934e-06    (625 m%)
+    dc: Ipad = 19.95e-06   (53.8 %), step = 2.17e-06     (625 m%)
+    dc: Ipad = 22.39e-06   (54.4 %), step = 2.435e-06    (625 m%)
+    dc: Ipad = 25.12e-06     (55 %), step = 2.732e-06    (625 m%)
+    dc: Ipad = 28.18e-06   (55.6 %), step = 3.065e-06    (625 m%)
+    dc: Ipad = 31.62e-06   (56.2 %), step = 3.439e-06    (625 m%)
+    dc: Ipad = 35.48e-06   (56.9 %), step = 3.859e-06    (625 m%)
+    dc: Ipad = 39.81e-06   (57.5 %), step = 4.329e-06    (625 m%)
+    dc: Ipad = 44.67e-06   (58.1 %), step = 4.858e-06    (625 m%)
+    dc: Ipad = 50.12e-06   (58.8 %), step = 5.45e-06     (625 m%)
+    dc: Ipad = 56.23e-06   (59.4 %), step = 6.115e-06    (625 m%)
+    dc: Ipad = 63.1e-06      (60 %), step = 6.862e-06    (625 m%)
+    dc: Ipad = 70.79e-06   (60.6 %), step = 7.699e-06    (625 m%)
+    dc: Ipad = 79.43e-06   (61.3 %), step = 8.638e-06    (625 m%)
+    dc: Ipad = 89.13e-06   (61.9 %), step = 9.692e-06    (625 m%)
+    dc: Ipad = 100e-06     (62.5 %), step = 10.87e-06    (625 m%)
+    dc: Ipad = 112.2e-06   (63.1 %), step = 12.2e-06     (625 m%)
+    dc: Ipad = 125.9e-06   (63.7 %), step = 13.69e-06    (625 m%)
+    dc: Ipad = 141.3e-06   (64.4 %), step = 15.36e-06    (625 m%)
+    dc: Ipad = 158.5e-06     (65 %), step = 17.24e-06    (625 m%)
+    dc: Ipad = 177.8e-06   (65.6 %), step = 19.34e-06    (625 m%)
+    dc: Ipad = 199.5e-06   (66.2 %), step = 21.7e-06     (625 m%)
+    dc: Ipad = 223.9e-06   (66.9 %), step = 24.35e-06    (625 m%)
+    dc: Ipad = 251.2e-06   (67.5 %), step = 27.32e-06    (625 m%)
+    dc: Ipad = 281.8e-06   (68.1 %), step = 30.65e-06    (625 m%)
+    dc: Ipad = 316.2e-06   (68.8 %), step = 34.39e-06    (625 m%)
+    dc: Ipad = 354.8e-06   (69.4 %), step = 38.59e-06    (625 m%)
+    dc: Ipad = 398.1e-06     (70 %), step = 43.29e-06    (625 m%)
+    dc: Ipad = 446.7e-06   (70.6 %), step = 48.58e-06    (625 m%)
+    dc: Ipad = 501.2e-06   (71.2 %), step = 54.5e-06     (625 m%)
+    dc: Ipad = 562.3e-06   (71.9 %), step = 61.15e-06    (625 m%)
+    dc: Ipad = 631e-06     (72.5 %), step = 68.62e-06    (625 m%)
+    dc: Ipad = 707.9e-06   (73.1 %), step = 76.99e-06    (625 m%)
+    dc: Ipad = 794.3e-06   (73.8 %), step = 86.38e-06    (625 m%)
+    dc: Ipad = 891.3e-06   (74.4 %), step = 96.92e-06    (625 m%)
+    dc: Ipad = 1e-03         (75 %), step = 108.7e-06    (625 m%)
+    dc: Ipad = 1.122e-03   (75.6 %), step = 122e-06      (625 m%)
+    dc: Ipad = 1.259e-03   (76.2 %), step = 136.9e-06    (625 m%)
+    dc: Ipad = 1.413e-03   (76.9 %), step = 153.6e-06    (625 m%)
+    dc: Ipad = 1.585e-03   (77.5 %), step = 172.4e-06    (625 m%)
+    dc: Ipad = 1.778e-03   (78.1 %), step = 193.4e-06    (625 m%)
+    dc: Ipad = 1.995e-03   (78.8 %), step = 217e-06      (625 m%)
+    dc: Ipad = 2.239e-03   (79.4 %), step = 243.5e-06    (625 m%)
+    dc: Ipad = 2.512e-03     (80 %), step = 273.2e-06    (625 m%)
+    dc: Ipad = 2.818e-03   (80.6 %), step = 306.5e-06    (625 m%)
+    dc: Ipad = 3.162e-03   (81.2 %), step = 343.9e-06    (625 m%)
+    dc: Ipad = 3.548e-03   (81.9 %), step = 385.9e-06    (625 m%)
+    dc: Ipad = 3.981e-03   (82.5 %), step = 432.9e-06    (625 m%)
+    dc: Ipad = 4.467e-03   (83.1 %), step = 485.8e-06    (625 m%)
+    dc: Ipad = 5.012e-03   (83.8 %), step = 545e-06      (625 m%)
+    dc: Ipad = 5.623e-03   (84.4 %), step = 611.5e-06    (625 m%)
+    dc: Ipad = 6.31e-03      (85 %), step = 686.2e-06    (625 m%)
+    dc: Ipad = 7.079e-03   (85.6 %), step = 769.9e-06    (625 m%)
+    dc: Ipad = 7.943e-03   (86.2 %), step = 863.8e-06    (625 m%)
+    dc: Ipad = 8.913e-03   (86.9 %), step = 969.2e-06    (625 m%)
+    dc: Ipad = 10e-03      (87.5 %), step = 1.087e-03    (625 m%)
+    dc: Ipad = 11.22e-03   (88.1 %), step = 1.22e-03     (625 m%)
+    dc: Ipad = 12.59e-03   (88.8 %), step = 1.369e-03    (625 m%)
+    dc: Ipad = 14.13e-03   (89.4 %), step = 1.536e-03    (625 m%)
+    dc: Ipad = 15.85e-03     (90 %), step = 1.724e-03    (625 m%)
+    dc: Ipad = 17.78e-03   (90.6 %), step = 1.934e-03    (625 m%)
+    dc: Ipad = 19.95e-03   (91.2 %), step = 2.17e-03     (625 m%)
+    dc: Ipad = 22.39e-03   (91.9 %), step = 2.435e-03    (625 m%)
+    dc: Ipad = 25.12e-03   (92.5 %), step = 2.732e-03    (625 m%)
+
+Warning from spectre at Ipad = 28.1838e-03 during DC analysis `dc'.
+    WARNING (CMI-2377): I8.M0: Vgd has exceeded the oxide breakdown voltage of `vbox' = 16.8 V.
+
+    dc: Ipad = 28.18e-03   (93.1 %), step = 3.065e-03    (625 m%)
+
+Warning from spectre at Ipad = 31.6228e-03 during DC analysis `dc'.
+    WARNING (CMI-2377): I8.M0: Vgd has exceeded the oxide breakdown voltage of `vbox' = 16.8 V.
+
+    dc: Ipad = 31.62e-03   (93.8 %), step = 3.439e-03    (625 m%)
+
+Warning from spectre at Ipad = 35.4813e-03 during DC analysis `dc'.
+    WARNING (CMI-2377): I8.M0: Vgd has exceeded the oxide breakdown voltage of `vbox' = 16.8 V.
+
+    dc: Ipad = 35.48e-03   (94.4 %), step = 3.859e-03    (625 m%)
+
+Warning from spectre at Ipad = 39.8107e-03 during DC analysis `dc'.
+    WARNING (CMI-2377): I8.M0: Vgd has exceeded the oxide breakdown voltage of `vbox' = 16.8 V.
+
+    dc: Ipad = 39.81e-03     (95 %), step = 4.329e-03    (625 m%)
+
+Warning from spectre at Ipad = 44.6684e-03 during DC analysis `dc'.
+    WARNING (CMI-2377): I8.M0: Vgd has exceeded the oxide breakdown voltage of `vbox' = 16.8 V.
+        Further occurrences of this warning will be suppressed.
+
+    dc: Ipad = 44.67e-03   (95.6 %), step = 4.858e-03    (625 m%)
+    dc: Ipad = 50.12e-03   (96.2 %), step = 5.45e-03     (625 m%)
+    dc: Ipad = 56.23e-03   (96.9 %), step = 6.115e-03    (625 m%)
+    dc: Ipad = 63.1e-03    (97.5 %), step = 6.862e-03    (625 m%)
+    dc: Ipad = 70.79e-03   (98.1 %), step = 7.699e-03    (625 m%)
+    dc: Ipad = 79.43e-03   (98.8 %), step = 8.638e-03    (625 m%)
+    dc: Ipad = 89.13e-03   (99.4 %), step = 9.692e-03    (625 m%)
+    dc: Ipad = 100e-03      (100 %), step = 10.87e-03    (625 m%)
+Total time required for dc analysis `dc': CPU = 39.994 ms, elapsed = 88.537 ms.
+Time accumulated: CPU = 324.949 ms, elapsed = 70.9872 s (1m  11.0s).
+Peak resident memory used = 56.6 Mbytes.
+
+
+Notice from spectre.
+    163 warnings suppressed.
+Warning from spectre.
+    WARNING (CMI-2477): I8.M0: `Rds' = 130.052 nOhm is less than 0.001. Set to 0.
+
+modelParameter: writing model parameter values to rawfile.
+
+Opening the PSF file ../psf/modelParameter.info ...
+element: writing instance parameter values to rawfile.
+
+Opening the PSF file ../psf/element.info ...
+outputParameter: writing output parameter values to rawfile.
+
+Opening the PSF file ../psf/outputParameter.info ...
+designParamVals: writing netlist parameters to rawfile.
+
+Opening the PSFASCII file ../psf/designParamVals.info ...
+primitives: writing primitives to rawfile.
+
+Opening the PSFASCII file ../psf/primitives.info.primitives ...
+subckts: writing subcircuits to rawfile.
+
+Opening the PSFASCII file ../psf/subckts.info.subckts ...
+
+Warning from spectre.
+    WARNING (CMI-2477): I8.M0: `Rds' = 130.052 nOhm is less than 0.001. Set to 0.
+    WARNING (SPECTRE-16707): Only tran supports psfxl format, result of other analyses will be in psfbin format.
+
+
+*******************************************
+DC Analysis `dc': Ipad = (1e-09 -> 100e-03)
+*******************************************
+
+Warning from spectre during DC analysis `dc'.
+    WARNING (CMI-2477): I8.M0: `Rds' = 130.052 nOhm is less than 0.001. Set to 0.
+
+
+Opening the PSF file ../psf/dc.dc ...
+Important parameter values:
+    reltol = 1e-03
+    abstol(V) = 1 uV
+    abstol(I) = 1 pA
+    temp = 27 C
+    tnom = 27 C
+    tempeffects = all
+    gmindc = 1 pS
+
+Warning from spectre at Ipad = 1.12202e-09 during DC analysis `dc'.
+    WARNING (CMI-2477): I8.M0: `Rds' = 130.052 nOhm is less than 0.001. Set to 0.
+Warning from spectre at Ipad = 1.25893e-09 during DC analysis `dc'.
+    WARNING (CMI-2477): I8.M0: `Rds' = 130.052 nOhm is less than 0.001. Set to 0.
+Warning from spectre at Ipad = 1.41254e-09 during DC analysis `dc'.
+    WARNING (CMI-2477): I8.M0: `Rds' = 130.052 nOhm is less than 0.001. Set to 0.
+Warning from spectre at Ipad = 1.58489e-09 during DC analysis `dc'.
+    WARNING (CMI-2477): I8.M0: `Rds' = 130.052 nOhm is less than 0.001. Set to 0.
+        Further occurrences of this warning will be suppressed.
+
+    dc: Ipad = 1.585e-09    (2.5 %), step = 172.4e-12    (625 m%)
+    dc: Ipad = 1.778e-09   (3.12 %), step = 193.4e-12    (625 m%)
+    dc: Ipad = 1.995e-09   (3.75 %), step = 217e-12      (625 m%)
+    dc: Ipad = 2.239e-09   (4.38 %), step = 243.5e-12    (625 m%)
+    dc: Ipad = 2.512e-09      (5 %), step = 273.2e-12    (625 m%)
+    dc: Ipad = 2.818e-09   (5.62 %), step = 306.5e-12    (625 m%)
+    dc: Ipad = 3.162e-09   (6.25 %), step = 343.9e-12    (625 m%)
+    dc: Ipad = 3.548e-09   (6.88 %), step = 385.9e-12    (625 m%)
+    dc: Ipad = 3.981e-09    (7.5 %), step = 432.9e-12    (625 m%)
+    dc: Ipad = 4.467e-09   (8.12 %), step = 485.8e-12    (625 m%)
+    dc: Ipad = 5.012e-09   (8.75 %), step = 545e-12      (625 m%)
+    dc: Ipad = 5.623e-09   (9.38 %), step = 611.5e-12    (625 m%)
+    dc: Ipad = 6.31e-09      (10 %), step = 686.2e-12    (625 m%)
+    dc: Ipad = 7.079e-09   (10.6 %), step = 769.9e-12    (625 m%)
+    dc: Ipad = 7.943e-09   (11.2 %), step = 863.8e-12    (625 m%)
+    dc: Ipad = 8.913e-09   (11.9 %), step = 969.2e-12    (625 m%)
+    dc: Ipad = 10e-09      (12.5 %), step = 1.087e-09    (625 m%)
+    dc: Ipad = 11.22e-09   (13.1 %), step = 1.22e-09     (625 m%)
+    dc: Ipad = 12.59e-09   (13.8 %), step = 1.369e-09    (625 m%)
+    dc: Ipad = 14.13e-09   (14.4 %), step = 1.536e-09    (625 m%)
+    dc: Ipad = 15.85e-09     (15 %), step = 1.724e-09    (625 m%)
+    dc: Ipad = 17.78e-09   (15.6 %), step = 1.934e-09    (625 m%)
+    dc: Ipad = 19.95e-09   (16.2 %), step = 2.17e-09     (625 m%)
+    dc: Ipad = 22.39e-09   (16.9 %), step = 2.435e-09    (625 m%)
+    dc: Ipad = 25.12e-09   (17.5 %), step = 2.732e-09    (625 m%)
+    dc: Ipad = 28.18e-09   (18.1 %), step = 3.065e-09    (625 m%)
+    dc: Ipad = 31.62e-09   (18.8 %), step = 3.439e-09    (625 m%)
+    dc: Ipad = 35.48e-09   (19.4 %), step = 3.859e-09    (625 m%)
+    dc: Ipad = 39.81e-09     (20 %), step = 4.329e-09    (625 m%)
+    dc: Ipad = 44.67e-09   (20.6 %), step = 4.858e-09    (625 m%)
+    dc: Ipad = 50.12e-09   (21.2 %), step = 5.45e-09     (625 m%)
+    dc: Ipad = 56.23e-09   (21.9 %), step = 6.115e-09    (625 m%)
+    dc: Ipad = 63.1e-09    (22.5 %), step = 6.862e-09    (625 m%)
+    dc: Ipad = 70.79e-09   (23.1 %), step = 7.699e-09    (625 m%)
+    dc: Ipad = 79.43e-09   (23.8 %), step = 8.638e-09    (625 m%)
+    dc: Ipad = 89.13e-09   (24.4 %), step = 9.692e-09    (625 m%)
+    dc: Ipad = 100e-09       (25 %), step = 10.87e-09    (625 m%)
+    dc: Ipad = 112.2e-09   (25.6 %), step = 12.2e-09     (625 m%)
+    dc: Ipad = 125.9e-09   (26.2 %), step = 13.69e-09    (625 m%)
+    dc: Ipad = 141.3e-09   (26.9 %), step = 15.36e-09    (625 m%)
+    dc: Ipad = 158.5e-09   (27.5 %), step = 17.24e-09    (625 m%)
+    dc: Ipad = 177.8e-09   (28.1 %), step = 19.34e-09    (625 m%)
+    dc: Ipad = 199.5e-09   (28.7 %), step = 21.7e-09     (625 m%)
+    dc: Ipad = 223.9e-09   (29.4 %), step = 24.35e-09    (625 m%)
+    dc: Ipad = 251.2e-09     (30 %), step = 27.32e-09    (625 m%)
+    dc: Ipad = 281.8e-09   (30.6 %), step = 30.65e-09    (625 m%)
+    dc: Ipad = 316.2e-09   (31.2 %), step = 34.39e-09    (625 m%)
+    dc: Ipad = 354.8e-09   (31.9 %), step = 38.59e-09    (625 m%)
+    dc: Ipad = 398.1e-09   (32.5 %), step = 43.29e-09    (625 m%)
+    dc: Ipad = 446.7e-09   (33.1 %), step = 48.58e-09    (625 m%)
+    dc: Ipad = 501.2e-09   (33.8 %), step = 54.5e-09     (625 m%)
+    dc: Ipad = 562.3e-09   (34.4 %), step = 61.15e-09    (625 m%)
+    dc: Ipad = 631e-09       (35 %), step = 68.62e-09    (625 m%)
+    dc: Ipad = 707.9e-09   (35.6 %), step = 76.99e-09    (625 m%)
+    dc: Ipad = 794.3e-09   (36.2 %), step = 86.38e-09    (625 m%)
+    dc: Ipad = 891.3e-09   (36.9 %), step = 96.92e-09    (625 m%)
+    dc: Ipad = 1e-06       (37.5 %), step = 108.7e-09    (625 m%)
+    dc: Ipad = 1.122e-06   (38.1 %), step = 122e-09      (625 m%)
+    dc: Ipad = 1.259e-06   (38.8 %), step = 136.9e-09    (625 m%)
+    dc: Ipad = 1.413e-06   (39.4 %), step = 153.6e-09    (625 m%)
+    dc: Ipad = 1.585e-06     (40 %), step = 172.4e-09    (625 m%)
+    dc: Ipad = 1.778e-06   (40.6 %), step = 193.4e-09    (625 m%)
+    dc: Ipad = 1.995e-06   (41.2 %), step = 217e-09      (625 m%)
+    dc: Ipad = 2.239e-06   (41.9 %), step = 243.5e-09    (625 m%)
+    dc: Ipad = 2.512e-06   (42.5 %), step = 273.2e-09    (625 m%)
+    dc: Ipad = 2.818e-06   (43.1 %), step = 306.5e-09    (625 m%)
+    dc: Ipad = 3.162e-06   (43.8 %), step = 343.9e-09    (625 m%)
+    dc: Ipad = 3.548e-06   (44.4 %), step = 385.9e-09    (625 m%)
+    dc: Ipad = 3.981e-06     (45 %), step = 432.9e-09    (625 m%)
+    dc: Ipad = 4.467e-06   (45.6 %), step = 485.8e-09    (625 m%)
+    dc: Ipad = 5.012e-06   (46.2 %), step = 545e-09      (625 m%)
+    dc: Ipad = 5.623e-06   (46.9 %), step = 611.5e-09    (625 m%)
+    dc: Ipad = 6.31e-06    (47.5 %), step = 686.2e-09    (625 m%)
+    dc: Ipad = 7.079e-06   (48.1 %), step = 769.9e-09    (625 m%)
+    dc: Ipad = 7.943e-06   (48.8 %), step = 863.8e-09    (625 m%)
+    dc: Ipad = 8.913e-06   (49.4 %), step = 969.2e-09    (625 m%)
+    dc: Ipad = 10e-06        (50 %), step = 1.087e-06    (625 m%)
+    dc: Ipad = 11.22e-06   (50.6 %), step = 1.22e-06     (625 m%)
+    dc: Ipad = 12.59e-06   (51.2 %), step = 1.369e-06    (625 m%)
+    dc: Ipad = 14.13e-06   (51.9 %), step = 1.536e-06    (625 m%)
+    dc: Ipad = 15.85e-06   (52.5 %), step = 1.724e-06    (625 m%)
+    dc: Ipad = 17.78e-06   (53.1 %), step = 1.934e-06    (625 m%)
+    dc: Ipad = 19.95e-06   (53.8 %), step = 2.17e-06     (625 m%)
+    dc: Ipad = 22.39e-06   (54.4 %), step = 2.435e-06    (625 m%)
+    dc: Ipad = 25.12e-06     (55 %), step = 2.732e-06    (625 m%)
+    dc: Ipad = 28.18e-06   (55.6 %), step = 3.065e-06    (625 m%)
+    dc: Ipad = 31.62e-06   (56.2 %), step = 3.439e-06    (625 m%)
+    dc: Ipad = 35.48e-06   (56.9 %), step = 3.859e-06    (625 m%)
+    dc: Ipad = 39.81e-06   (57.5 %), step = 4.329e-06    (625 m%)
+    dc: Ipad = 44.67e-06   (58.1 %), step = 4.858e-06    (625 m%)
+    dc: Ipad = 50.12e-06   (58.8 %), step = 5.45e-06     (625 m%)
+    dc: Ipad = 56.23e-06   (59.4 %), step = 6.115e-06    (625 m%)
+    dc: Ipad = 63.1e-06      (60 %), step = 6.862e-06    (625 m%)
+    dc: Ipad = 70.79e-06   (60.6 %), step = 7.699e-06    (625 m%)
+    dc: Ipad = 79.43e-06   (61.3 %), step = 8.638e-06    (625 m%)
+    dc: Ipad = 89.13e-06   (61.9 %), step = 9.692e-06    (625 m%)
+    dc: Ipad = 100e-06     (62.5 %), step = 10.87e-06    (625 m%)
+    dc: Ipad = 112.2e-06   (63.1 %), step = 12.2e-06     (625 m%)
+    dc: Ipad = 125.9e-06   (63.7 %), step = 13.69e-06    (625 m%)
+    dc: Ipad = 141.3e-06   (64.4 %), step = 15.36e-06    (625 m%)
+    dc: Ipad = 158.5e-06     (65 %), step = 17.24e-06    (625 m%)
+    dc: Ipad = 177.8e-06   (65.6 %), step = 19.34e-06    (625 m%)
+    dc: Ipad = 199.5e-06   (66.2 %), step = 21.7e-06     (625 m%)
+    dc: Ipad = 223.9e-06   (66.9 %), step = 24.35e-06    (625 m%)
+    dc: Ipad = 251.2e-06   (67.5 %), step = 27.32e-06    (625 m%)
+    dc: Ipad = 281.8e-06   (68.1 %), step = 30.65e-06    (625 m%)
+    dc: Ipad = 316.2e-06   (68.8 %), step = 34.39e-06    (625 m%)
+    dc: Ipad = 354.8e-06   (69.4 %), step = 38.59e-06    (625 m%)
+    dc: Ipad = 398.1e-06     (70 %), step = 43.29e-06    (625 m%)
+    dc: Ipad = 446.7e-06   (70.6 %), step = 48.58e-06    (625 m%)
+    dc: Ipad = 501.2e-06   (71.2 %), step = 54.5e-06     (625 m%)
+    dc: Ipad = 562.3e-06   (71.9 %), step = 61.15e-06    (625 m%)
+    dc: Ipad = 631e-06     (72.5 %), step = 68.62e-06    (625 m%)
+    dc: Ipad = 707.9e-06   (73.1 %), step = 76.99e-06    (625 m%)
+    dc: Ipad = 794.3e-06   (73.8 %), step = 86.38e-06    (625 m%)
+    dc: Ipad = 891.3e-06   (74.4 %), step = 96.92e-06    (625 m%)
+    dc: Ipad = 1e-03         (75 %), step = 108.7e-06    (625 m%)
+    dc: Ipad = 1.122e-03   (75.6 %), step = 122e-06      (625 m%)
+    dc: Ipad = 1.259e-03   (76.2 %), step = 136.9e-06    (625 m%)
+    dc: Ipad = 1.413e-03   (76.9 %), step = 153.6e-06    (625 m%)
+    dc: Ipad = 1.585e-03   (77.5 %), step = 172.4e-06    (625 m%)
+    dc: Ipad = 1.778e-03   (78.1 %), step = 193.4e-06    (625 m%)
+    dc: Ipad = 1.995e-03   (78.8 %), step = 217e-06      (625 m%)
+    dc: Ipad = 2.239e-03   (79.4 %), step = 243.5e-06    (625 m%)
+    dc: Ipad = 2.512e-03     (80 %), step = 273.2e-06    (625 m%)
+    dc: Ipad = 2.818e-03   (80.6 %), step = 306.5e-06    (625 m%)
+    dc: Ipad = 3.162e-03   (81.2 %), step = 343.9e-06    (625 m%)
+    dc: Ipad = 3.548e-03   (81.9 %), step = 385.9e-06    (625 m%)
+    dc: Ipad = 3.981e-03   (82.5 %), step = 432.9e-06    (625 m%)
+    dc: Ipad = 4.467e-03   (83.1 %), step = 485.8e-06    (625 m%)
+    dc: Ipad = 5.012e-03   (83.8 %), step = 545e-06      (625 m%)
+    dc: Ipad = 5.623e-03   (84.4 %), step = 611.5e-06    (625 m%)
+    dc: Ipad = 6.31e-03      (85 %), step = 686.2e-06    (625 m%)
+    dc: Ipad = 7.079e-03   (85.6 %), step = 769.9e-06    (625 m%)
+    dc: Ipad = 7.943e-03   (86.2 %), step = 863.8e-06    (625 m%)
+    dc: Ipad = 8.913e-03   (86.9 %), step = 969.2e-06    (625 m%)
+    dc: Ipad = 10e-03      (87.5 %), step = 1.087e-03    (625 m%)
+    dc: Ipad = 11.22e-03   (88.1 %), step = 1.22e-03     (625 m%)
+    dc: Ipad = 12.59e-03   (88.8 %), step = 1.369e-03    (625 m%)
+    dc: Ipad = 14.13e-03   (89.4 %), step = 1.536e-03    (625 m%)
+    dc: Ipad = 15.85e-03     (90 %), step = 1.724e-03    (625 m%)
+    dc: Ipad = 17.78e-03   (90.6 %), step = 1.934e-03    (625 m%)
+    dc: Ipad = 19.95e-03   (91.2 %), step = 2.17e-03     (625 m%)
+    dc: Ipad = 22.39e-03   (91.9 %), step = 2.435e-03    (625 m%)
+    dc: Ipad = 25.12e-03   (92.5 %), step = 2.732e-03    (625 m%)
+    dc: Ipad = 28.18e-03   (93.1 %), step = 3.065e-03    (625 m%)
+
+Warning from spectre at Ipad = 31.6228e-03 during DC analysis `dc'.
+    WARNING (CMI-2377): I8.M0: Vgd has exceeded the oxide breakdown voltage of `vbox' = 16.8 V.
+
+    dc: Ipad = 31.62e-03   (93.8 %), step = 3.439e-03    (625 m%)
+
+Warning from spectre at Ipad = 35.4813e-03 during DC analysis `dc'.
+    WARNING (CMI-2377): I8.M0: Vgd has exceeded the oxide breakdown voltage of `vbox' = 16.8 V.
+
+    dc: Ipad = 35.48e-03   (94.4 %), step = 3.859e-03    (625 m%)
+
+Warning from spectre at Ipad = 39.8107e-03 during DC analysis `dc'.
+    WARNING (CMI-2377): I8.M0: Vgd has exceeded the oxide breakdown voltage of `vbox' = 16.8 V.
+
+    dc: Ipad = 39.81e-03     (95 %), step = 4.329e-03    (625 m%)
+
+Warning from spectre at Ipad = 44.6684e-03 during DC analysis `dc'.
+    WARNING (CMI-2377): I8.M0: Vgd has exceeded the oxide breakdown voltage of `vbox' = 16.8 V.
+
+    dc: Ipad = 44.67e-03   (95.6 %), step = 4.858e-03    (625 m%)
+
+Warning from spectre at Ipad = 50.1187e-03 during DC analysis `dc'.
+    WARNING (CMI-2377): I8.M0: Vgd has exceeded the oxide breakdown voltage of `vbox' = 16.8 V.
+        Further occurrences of this warning will be suppressed.
+
+    dc: Ipad = 50.12e-03   (96.2 %), step = 5.45e-03     (625 m%)
+    dc: Ipad = 56.23e-03   (96.9 %), step = 6.115e-03    (625 m%)
+    dc: Ipad = 63.1e-03    (97.5 %), step = 6.862e-03    (625 m%)
+    dc: Ipad = 70.79e-03   (98.1 %), step = 7.699e-03    (625 m%)
+    dc: Ipad = 79.43e-03   (98.8 %), step = 8.638e-03    (625 m%)
+    dc: Ipad = 89.13e-03   (99.4 %), step = 9.692e-03    (625 m%)
+    dc: Ipad = 100e-03      (100 %), step = 10.87e-03    (625 m%)
+Total time required for dc analysis `dc': CPU = 31.996 ms, elapsed = 68.922 ms.
+Time accumulated: CPU = 396.939 ms, elapsed = 134.123 s (2m  14.1s).
+Peak resident memory used = 56.7 Mbytes.
+
+
+Notice from spectre.
+    162 warnings suppressed.
+Warning from spectre.
+    WARNING (CMI-2477): I8.M0: `Rds' = 130.052 nOhm is less than 0.001. Set to 0.
+
+modelParameter: writing model parameter values to rawfile.
+
+Opening the PSF file ../psf/modelParameter.info ...
+element: writing instance parameter values to rawfile.
+
+Opening the PSF file ../psf/element.info ...
+outputParameter: writing output parameter values to rawfile.
+
+Opening the PSF file ../psf/outputParameter.info ...
+designParamVals: writing netlist parameters to rawfile.
+
+Opening the PSFASCII file ../psf/designParamVals.info ...
+primitives: writing primitives to rawfile.
+
+Opening the PSFASCII file ../psf/primitives.info.primitives ...
+subckts: writing subcircuits to rawfile.
+
+Opening the PSFASCII file ../psf/subckts.info.subckts ...
+
+Warning from spectre.
+    WARNING (CMI-2477): I8.M0: `Rds' = 130.052 nOhm is less than 0.001. Set to 0.
+    WARNING (SPECTRE-16707): Only tran supports psfxl format, result of other analyses will be in psfbin format.
+
+
+*******************************************
+DC Analysis `dc': Ipad = (1e-09 -> 100e-03)
+*******************************************
+
+Warning from spectre during DC analysis `dc'.
+    WARNING (CMI-2477): I8.M0: `Rds' = 130.052 nOhm is less than 0.001. Set to 0.
+
+
+Opening the PSF file ../psf/dc.dc ...
+Important parameter values:
+    reltol = 1e-03
+    abstol(V) = 1 uV
+    abstol(I) = 1 pA
+    temp = 27 C
+    tnom = 27 C
+    tempeffects = all
+    gmindc = 1 pS
+
+Warning from spectre at Ipad = 1.12202e-09 during DC analysis `dc'.
+    WARNING (CMI-2477): I8.M0: `Rds' = 130.052 nOhm is less than 0.001. Set to 0.
+Warning from spectre at Ipad = 1.25893e-09 during DC analysis `dc'.
+    WARNING (CMI-2477): I8.M0: `Rds' = 130.052 nOhm is less than 0.001. Set to 0.
+Warning from spectre at Ipad = 1.41254e-09 during DC analysis `dc'.
+    WARNING (CMI-2477): I8.M0: `Rds' = 130.052 nOhm is less than 0.001. Set to 0.
+Warning from spectre at Ipad = 1.58489e-09 during DC analysis `dc'.
+    WARNING (CMI-2477): I8.M0: `Rds' = 130.052 nOhm is less than 0.001. Set to 0.
+        Further occurrences of this warning will be suppressed.
+
+    dc: Ipad = 1.585e-09    (2.5 %), step = 172.4e-12    (625 m%)
+    dc: Ipad = 1.778e-09   (3.12 %), step = 193.4e-12    (625 m%)
+    dc: Ipad = 1.995e-09   (3.75 %), step = 217e-12      (625 m%)
+    dc: Ipad = 2.239e-09   (4.38 %), step = 243.5e-12    (625 m%)
+    dc: Ipad = 2.512e-09      (5 %), step = 273.2e-12    (625 m%)
+    dc: Ipad = 2.818e-09   (5.62 %), step = 306.5e-12    (625 m%)
+    dc: Ipad = 3.162e-09   (6.25 %), step = 343.9e-12    (625 m%)
+    dc: Ipad = 3.548e-09   (6.88 %), step = 385.9e-12    (625 m%)
+    dc: Ipad = 3.981e-09    (7.5 %), step = 432.9e-12    (625 m%)
+    dc: Ipad = 4.467e-09   (8.12 %), step = 485.8e-12    (625 m%)
+    dc: Ipad = 5.012e-09   (8.75 %), step = 545e-12      (625 m%)
+    dc: Ipad = 5.623e-09   (9.38 %), step = 611.5e-12    (625 m%)
+    dc: Ipad = 6.31e-09      (10 %), step = 686.2e-12    (625 m%)
+    dc: Ipad = 7.079e-09   (10.6 %), step = 769.9e-12    (625 m%)
+    dc: Ipad = 7.943e-09   (11.2 %), step = 863.8e-12    (625 m%)
+    dc: Ipad = 8.913e-09   (11.9 %), step = 969.2e-12    (625 m%)
+    dc: Ipad = 10e-09      (12.5 %), step = 1.087e-09    (625 m%)
+    dc: Ipad = 11.22e-09   (13.1 %), step = 1.22e-09     (625 m%)
+    dc: Ipad = 12.59e-09   (13.8 %), step = 1.369e-09    (625 m%)
+    dc: Ipad = 14.13e-09   (14.4 %), step = 1.536e-09    (625 m%)
+    dc: Ipad = 15.85e-09     (15 %), step = 1.724e-09    (625 m%)
+    dc: Ipad = 17.78e-09   (15.6 %), step = 1.934e-09    (625 m%)
+    dc: Ipad = 19.95e-09   (16.2 %), step = 2.17e-09     (625 m%)
+    dc: Ipad = 22.39e-09   (16.9 %), step = 2.435e-09    (625 m%)
+    dc: Ipad = 25.12e-09   (17.5 %), step = 2.732e-09    (625 m%)
+    dc: Ipad = 28.18e-09   (18.1 %), step = 3.065e-09    (625 m%)
+    dc: Ipad = 31.62e-09   (18.8 %), step = 3.439e-09    (625 m%)
+    dc: Ipad = 35.48e-09   (19.4 %), step = 3.859e-09    (625 m%)
+    dc: Ipad = 39.81e-09     (20 %), step = 4.329e-09    (625 m%)
+    dc: Ipad = 44.67e-09   (20.6 %), step = 4.858e-09    (625 m%)
+    dc: Ipad = 50.12e-09   (21.2 %), step = 5.45e-09     (625 m%)
+    dc: Ipad = 56.23e-09   (21.9 %), step = 6.115e-09    (625 m%)
+    dc: Ipad = 63.1e-09    (22.5 %), step = 6.862e-09    (625 m%)
+    dc: Ipad = 70.79e-09   (23.1 %), step = 7.699e-09    (625 m%)
+    dc: Ipad = 79.43e-09   (23.8 %), step = 8.638e-09    (625 m%)
+    dc: Ipad = 89.13e-09   (24.4 %), step = 9.692e-09    (625 m%)
+    dc: Ipad = 100e-09       (25 %), step = 10.87e-09    (625 m%)
+    dc: Ipad = 112.2e-09   (25.6 %), step = 12.2e-09     (625 m%)
+    dc: Ipad = 125.9e-09   (26.2 %), step = 13.69e-09    (625 m%)
+    dc: Ipad = 141.3e-09   (26.9 %), step = 15.36e-09    (625 m%)
+    dc: Ipad = 158.5e-09   (27.5 %), step = 17.24e-09    (625 m%)
+    dc: Ipad = 177.8e-09   (28.1 %), step = 19.34e-09    (625 m%)
+    dc: Ipad = 199.5e-09   (28.7 %), step = 21.7e-09     (625 m%)
+    dc: Ipad = 223.9e-09   (29.4 %), step = 24.35e-09    (625 m%)
+    dc: Ipad = 251.2e-09     (30 %), step = 27.32e-09    (625 m%)
+    dc: Ipad = 281.8e-09   (30.6 %), step = 30.65e-09    (625 m%)
+    dc: Ipad = 316.2e-09   (31.2 %), step = 34.39e-09    (625 m%)
+    dc: Ipad = 354.8e-09   (31.9 %), step = 38.59e-09    (625 m%)
+    dc: Ipad = 398.1e-09   (32.5 %), step = 43.29e-09    (625 m%)
+    dc: Ipad = 446.7e-09   (33.1 %), step = 48.58e-09    (625 m%)
+    dc: Ipad = 501.2e-09   (33.8 %), step = 54.5e-09     (625 m%)
+    dc: Ipad = 562.3e-09   (34.4 %), step = 61.15e-09    (625 m%)
+    dc: Ipad = 631e-09       (35 %), step = 68.62e-09    (625 m%)
+    dc: Ipad = 707.9e-09   (35.6 %), step = 76.99e-09    (625 m%)
+    dc: Ipad = 794.3e-09   (36.2 %), step = 86.38e-09    (625 m%)
+    dc: Ipad = 891.3e-09   (36.9 %), step = 96.92e-09    (625 m%)
+    dc: Ipad = 1e-06       (37.5 %), step = 108.7e-09    (625 m%)
+    dc: Ipad = 1.122e-06   (38.1 %), step = 122e-09      (625 m%)
+    dc: Ipad = 1.259e-06   (38.8 %), step = 136.9e-09    (625 m%)
+    dc: Ipad = 1.413e-06   (39.4 %), step = 153.6e-09    (625 m%)
+    dc: Ipad = 1.585e-06     (40 %), step = 172.4e-09    (625 m%)
+    dc: Ipad = 1.778e-06   (40.6 %), step = 193.4e-09    (625 m%)
+    dc: Ipad = 1.995e-06   (41.2 %), step = 217e-09      (625 m%)
+    dc: Ipad = 2.239e-06   (41.9 %), step = 243.5e-09    (625 m%)
+    dc: Ipad = 2.512e-06   (42.5 %), step = 273.2e-09    (625 m%)
+    dc: Ipad = 2.818e-06   (43.1 %), step = 306.5e-09    (625 m%)
+    dc: Ipad = 3.162e-06   (43.8 %), step = 343.9e-09    (625 m%)
+    dc: Ipad = 3.548e-06   (44.4 %), step = 385.9e-09    (625 m%)
+    dc: Ipad = 3.981e-06     (45 %), step = 432.9e-09    (625 m%)
+    dc: Ipad = 4.467e-06   (45.6 %), step = 485.8e-09    (625 m%)
+    dc: Ipad = 5.012e-06   (46.2 %), step = 545e-09      (625 m%)
+    dc: Ipad = 5.623e-06   (46.9 %), step = 611.5e-09    (625 m%)
+    dc: Ipad = 6.31e-06    (47.5 %), step = 686.2e-09    (625 m%)
+    dc: Ipad = 7.079e-06   (48.1 %), step = 769.9e-09    (625 m%)
+    dc: Ipad = 7.943e-06   (48.8 %), step = 863.8e-09    (625 m%)
+    dc: Ipad = 8.913e-06   (49.4 %), step = 969.2e-09    (625 m%)
+    dc: Ipad = 10e-06        (50 %), step = 1.087e-06    (625 m%)
+    dc: Ipad = 11.22e-06   (50.6 %), step = 1.22e-06     (625 m%)
+    dc: Ipad = 12.59e-06   (51.2 %), step = 1.369e-06    (625 m%)
+    dc: Ipad = 14.13e-06   (51.9 %), step = 1.536e-06    (625 m%)
+    dc: Ipad = 15.85e-06   (52.5 %), step = 1.724e-06    (625 m%)
+    dc: Ipad = 17.78e-06   (53.1 %), step = 1.934e-06    (625 m%)
+    dc: Ipad = 19.95e-06   (53.8 %), step = 2.17e-06     (625 m%)
+    dc: Ipad = 22.39e-06   (54.4 %), step = 2.435e-06    (625 m%)
+    dc: Ipad = 25.12e-06     (55 %), step = 2.732e-06    (625 m%)
+    dc: Ipad = 28.18e-06   (55.6 %), step = 3.065e-06    (625 m%)
+    dc: Ipad = 31.62e-06   (56.2 %), step = 3.439e-06    (625 m%)
+    dc: Ipad = 35.48e-06   (56.9 %), step = 3.859e-06    (625 m%)
+    dc: Ipad = 39.81e-06   (57.5 %), step = 4.329e-06    (625 m%)
+    dc: Ipad = 44.67e-06   (58.1 %), step = 4.858e-06    (625 m%)
+    dc: Ipad = 50.12e-06   (58.8 %), step = 5.45e-06     (625 m%)
+    dc: Ipad = 56.23e-06   (59.4 %), step = 6.115e-06    (625 m%)
+    dc: Ipad = 63.1e-06      (60 %), step = 6.862e-06    (625 m%)
+    dc: Ipad = 70.79e-06   (60.6 %), step = 7.699e-06    (625 m%)
+    dc: Ipad = 79.43e-06   (61.3 %), step = 8.638e-06    (625 m%)
+    dc: Ipad = 89.13e-06   (61.9 %), step = 9.692e-06    (625 m%)
+    dc: Ipad = 100e-06     (62.5 %), step = 10.87e-06    (625 m%)
+    dc: Ipad = 112.2e-06   (63.1 %), step = 12.2e-06     (625 m%)
+    dc: Ipad = 125.9e-06   (63.7 %), step = 13.69e-06    (625 m%)
+    dc: Ipad = 141.3e-06   (64.4 %), step = 15.36e-06    (625 m%)
+    dc: Ipad = 158.5e-06     (65 %), step = 17.24e-06    (625 m%)
+    dc: Ipad = 177.8e-06   (65.6 %), step = 19.34e-06    (625 m%)
+    dc: Ipad = 199.5e-06   (66.2 %), step = 21.7e-06     (625 m%)
+    dc: Ipad = 223.9e-06   (66.9 %), step = 24.35e-06    (625 m%)
+    dc: Ipad = 251.2e-06   (67.5 %), step = 27.32e-06    (625 m%)
+    dc: Ipad = 281.8e-06   (68.1 %), step = 30.65e-06    (625 m%)
+    dc: Ipad = 316.2e-06   (68.8 %), step = 34.39e-06    (625 m%)
+    dc: Ipad = 354.8e-06   (69.4 %), step = 38.59e-06    (625 m%)
+    dc: Ipad = 398.1e-06     (70 %), step = 43.29e-06    (625 m%)
+    dc: Ipad = 446.7e-06   (70.6 %), step = 48.58e-06    (625 m%)
+    dc: Ipad = 501.2e-06   (71.2 %), step = 54.5e-06     (625 m%)
+    dc: Ipad = 562.3e-06   (71.9 %), step = 61.15e-06    (625 m%)
+    dc: Ipad = 631e-06     (72.5 %), step = 68.62e-06    (625 m%)
+    dc: Ipad = 707.9e-06   (73.1 %), step = 76.99e-06    (625 m%)
+    dc: Ipad = 794.3e-06   (73.8 %), step = 86.38e-06    (625 m%)
+    dc: Ipad = 891.3e-06   (74.4 %), step = 96.92e-06    (625 m%)
+    dc: Ipad = 1e-03         (75 %), step = 108.7e-06    (625 m%)
+    dc: Ipad = 1.122e-03   (75.6 %), step = 122e-06      (625 m%)
+    dc: Ipad = 1.259e-03   (76.2 %), step = 136.9e-06    (625 m%)
+    dc: Ipad = 1.413e-03   (76.9 %), step = 153.6e-06    (625 m%)
+    dc: Ipad = 1.585e-03   (77.5 %), step = 172.4e-06    (625 m%)
+    dc: Ipad = 1.778e-03   (78.1 %), step = 193.4e-06    (625 m%)
+    dc: Ipad = 1.995e-03   (78.8 %), step = 217e-06      (625 m%)
+    dc: Ipad = 2.239e-03   (79.4 %), step = 243.5e-06    (625 m%)
+    dc: Ipad = 2.512e-03     (80 %), step = 273.2e-06    (625 m%)
+    dc: Ipad = 2.818e-03   (80.6 %), step = 306.5e-06    (625 m%)
+    dc: Ipad = 3.162e-03   (81.2 %), step = 343.9e-06    (625 m%)
+    dc: Ipad = 3.548e-03   (81.9 %), step = 385.9e-06    (625 m%)
+    dc: Ipad = 3.981e-03   (82.5 %), step = 432.9e-06    (625 m%)
+    dc: Ipad = 4.467e-03   (83.1 %), step = 485.8e-06    (625 m%)
+    dc: Ipad = 5.012e-03   (83.8 %), step = 545e-06      (625 m%)
+    dc: Ipad = 5.623e-03   (84.4 %), step = 611.5e-06    (625 m%)
+    dc: Ipad = 6.31e-03      (85 %), step = 686.2e-06    (625 m%)
+    dc: Ipad = 7.079e-03   (85.6 %), step = 769.9e-06    (625 m%)
+    dc: Ipad = 7.943e-03   (86.2 %), step = 863.8e-06    (625 m%)
+    dc: Ipad = 8.913e-03   (86.9 %), step = 969.2e-06    (625 m%)
+    dc: Ipad = 10e-03      (87.5 %), step = 1.087e-03    (625 m%)
+    dc: Ipad = 11.22e-03   (88.1 %), step = 1.22e-03     (625 m%)
+    dc: Ipad = 12.59e-03   (88.8 %), step = 1.369e-03    (625 m%)
+    dc: Ipad = 14.13e-03   (89.4 %), step = 1.536e-03    (625 m%)
+    dc: Ipad = 15.85e-03     (90 %), step = 1.724e-03    (625 m%)
+    dc: Ipad = 17.78e-03   (90.6 %), step = 1.934e-03    (625 m%)
+    dc: Ipad = 19.95e-03   (91.2 %), step = 2.17e-03     (625 m%)
+    dc: Ipad = 22.39e-03   (91.9 %), step = 2.435e-03    (625 m%)
+    dc: Ipad = 25.12e-03   (92.5 %), step = 2.732e-03    (625 m%)
+    dc: Ipad = 28.18e-03   (93.1 %), step = 3.065e-03    (625 m%)
+
+Warning from spectre at Ipad = 31.6228e-03 during DC analysis `dc'.
+    WARNING (CMI-2377): I8.M0: Vgd has exceeded the oxide breakdown voltage of `vbox' = 16.8 V.
+
+    dc: Ipad = 31.62e-03   (93.8 %), step = 3.439e-03    (625 m%)
+
+Warning from spectre at Ipad = 35.4813e-03 during DC analysis `dc'.
+    WARNING (CMI-2377): I8.M0: Vgd has exceeded the oxide breakdown voltage of `vbox' = 16.8 V.
+
+    dc: Ipad = 35.48e-03   (94.4 %), step = 3.859e-03    (625 m%)
+
+Warning from spectre at Ipad = 39.8107e-03 during DC analysis `dc'.
+    WARNING (CMI-2377): I8.M0: Vgd has exceeded the oxide breakdown voltage of `vbox' = 16.8 V.
+
+    dc: Ipad = 39.81e-03     (95 %), step = 4.329e-03    (625 m%)
+
+Warning from spectre at Ipad = 44.6684e-03 during DC analysis `dc'.
+    WARNING (CMI-2377): I8.M0: Vgd has exceeded the oxide breakdown voltage of `vbox' = 16.8 V.
+
+    dc: Ipad = 44.67e-03   (95.6 %), step = 4.858e-03    (625 m%)
+
+Warning from spectre at Ipad = 50.1187e-03 during DC analysis `dc'.
+    WARNING (CMI-2377): I8.M0: Vgd has exceeded the oxide breakdown voltage of `vbox' = 16.8 V.
+        Further occurrences of this warning will be suppressed.
+
+    dc: Ipad = 50.12e-03   (96.2 %), step = 5.45e-03     (625 m%)
+    dc: Ipad = 56.23e-03   (96.9 %), step = 6.115e-03    (625 m%)
+    dc: Ipad = 63.1e-03    (97.5 %), step = 6.862e-03    (625 m%)
+    dc: Ipad = 70.79e-03   (98.1 %), step = 7.699e-03    (625 m%)
+    dc: Ipad = 79.43e-03   (98.8 %), step = 8.638e-03    (625 m%)
+    dc: Ipad = 89.13e-03   (99.4 %), step = 9.692e-03    (625 m%)
+    dc: Ipad = 100e-03      (100 %), step = 10.87e-03    (625 m%)
+Total time required for dc analysis `dc': CPU = 31.995 ms, elapsed = 68.0552 ms.
+Time accumulated: CPU = 459.929 ms, elapsed = 198.213 s (3m  18.2s).
+Peak resident memory used = 56.7 Mbytes.
+
+
+Notice from spectre.
+    162 warnings suppressed.
+Warning from spectre.
+    WARNING (CMI-2477): I8.M0: `Rds' = 130.052 nOhm is less than 0.001. Set to 0.
+
+modelParameter: writing model parameter values to rawfile.
+
+Opening the PSF file ../psf/modelParameter.info ...
+element: writing instance parameter values to rawfile.
+
+Opening the PSF file ../psf/element.info ...
+outputParameter: writing output parameter values to rawfile.
+
+Opening the PSF file ../psf/outputParameter.info ...
+designParamVals: writing netlist parameters to rawfile.
+
+Opening the PSFASCII file ../psf/designParamVals.info ...
+primitives: writing primitives to rawfile.
+
+Opening the PSFASCII file ../psf/primitives.info.primitives ...
+subckts: writing subcircuits to rawfile.
+
+Opening the PSFASCII file ../psf/subckts.info.subckts ...
+
+Aggregate audit (10:46:29 PM, Wed Jul 15, 2026):
+Time used: CPU = 870 ms, elapsed = 2.57 ks (42m  51.9s), util. = 33.8e-03%.
+Time spent in licensing: elapsed = 117 ms.
+Peak memory used = 57 Mbytes.
+Simulation started at: 10:03:37 PM, Wed Jul 15, 2026, ended at: 10:46:29 PM, Wed Jul 15, 2026, with elapsed time (wall clock): 2.57 ks (42m  51.9s).
+spectre completes with 0 errors, 53 warnings, and 4 notices.
