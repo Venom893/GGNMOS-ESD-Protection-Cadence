@@ -23,7 +23,7 @@
 
 > Every chip needs ESD protection, or it doesn't survive its first handshake with reality.
 
-A **Gate-Grounded NMOS (GGNMOS)** primary ESD clamp — designed, simulated, characterized, and debugged from a blank schematic in Cadence Virtuoso, including a real PDK toolchain bug found and fixed, and a PDK modeling limitation identified through direct experiment.
+A **Gate-Grounded NMOS (GGNMOS)** primary ESD clamp — designed, simulated, characterized, and debugged from a blank schematic in Cadence Virtuoso. Along the way: a real PDK bug found and fixed, a PDK modeling limitation exposed by experiment, and a behavioral macro-model built to recover the physics the compact model leaves out.
 
 ---
 
@@ -42,9 +42,9 @@ The GGNMOS is the **workhorse primary ESD clamp** used on real I/O pads in produ
 | **Tool** | Cadence Virtuoso IC6.1.7 |
 | **Simulator** | Spectre Circuit Simulator |
 | **PDK / Node** | gpdk090 — 90 nm |
-| **Analyses** | Transient (ESD-style stress pulse) · DC (current-forced snapback sweep) |
-| **Device** | Gate-Grounded NMOS primary clamp |
-| **Status** | Verified clean at 8 V transient · snapback characterized over 8 decades — PDK model limitation identified |
+| **Analyses** | Transient (ESD-style pulse) · DC (current-forced snapback sweep) |
+| **Device** | Gate-Grounded NMOS primary clamp + behavioral macro-model |
+| **Status** | Transient verified · snapback characterized · macro-model recovers parasitic-NPN trigger (Vt1 ≈ 9 V) |
 
 ---
 
@@ -55,6 +55,8 @@ The GGNMOS is the **workhorse primary ESD clamp** used on real I/O pads in produ
 | **[GGNMOS cell](Schematics/GGNMOS_ESD_schematic.png)** | NMOS with gate, source, and bulk tied to ground — the configuration that arms the parasitic conduction path during a discharge while keeping the device off in normal use. |
 | **[Transient testbench](Schematics/GGNMOS_ESD_tb_schematic.png)** | Pulse source driving the device through the PAD node, emulating a fast-rising ESD-like stress event. |
 | **[Snapback testbench](Schematics/GGNMOS_ESD_snapback_tb_schematic.png)** | DC current source forcing current into the PAD node — the correct stimulus for tracing a snapback I–V curve. |
+| **[Macro-model cell](Schematics/GGNMOS_ESD_macro_schematic.png)** | GGNMOS with an **explicit parasitic NPN + substrate resistance (Rsub) + avalanche current source** — a behavioral model of the bipolar mechanism the compact model omits. |
+| **[Macro-model testbench](Schematics/GGNMOS_ESD_macro_tb_schematic.png)** | Current-forced testbench driving the macro-model to extract its trigger characteristic. |
 
 ## Results
 
@@ -62,45 +64,59 @@ The GGNMOS is the **workhorse primary ESD clamp** used on real I/O pads in produ
 |------|-------------|
 | **[PAD voltage waveform](Results/GGNMOS_ESD_Pad_Voltage_Waveform.jpg)** | Pad-node response to an 8 V, 100 ps-rise transient stress pulse. |
 | **[Spectre run log](Results/ESD_run_log_8V.txt)** | Full transient simulation log — clean run, zero errors. |
-| **[Snapback I–V sweep](Results/GGNMOS_snapback_IV_sweep.png)** | Pad voltage vs. forced pad current, 1 nA → 100 mA, with extracted data markers. |
-| **[Snapback Spectre log](Results/snapback_spectre.log)** | Full DC sweep log, including the simulator's oxide-breakdown warning. |
-
-The transient waveform shows clean pad-voltage tracking through the protection path at this stress level, confirming a correctly assembled device, testbench, and simulation flow.
+| **[Snapback I–V sweep](Results/GGNMOS_snapback_IV_sweep.png)** | Compact-model pad voltage vs. forced current, 1 nA → 100 mA. |
+| **[Macro-model I–V sweep](Results/GGNMOS_macro_IV_cadence.png)** | Macro-model characteristic showing the parasitic-NPN trigger knee at ≈ 9 V. |
+| **[Macro-model data](Results/macro_IV_data.txt)** | Extracted I–V data points. |
+| **[Macro-model Spectre log](Results/macro_spectre.log)** | Full macro-model simulation log. |
 
 ---
 
-## Snapback characterization
+## Snapback characterization — the finding
 
-Snapback is the defining behavior of a GGNMOS clamp: at the trigger voltage **Vt1**, avalanche breakdown at the drain junction turns on the device's parasitic NPN bipolar, and the voltage *drops* while current climbs — a negative-differential-resistance region that shunts ESD energy at low voltage.
+Snapback is the defining behavior of a GGNMOS clamp: at the trigger voltage **Vt1**, avalanche breakdown at the drain junction turns on the device's parasitic NPN, and the voltage *drops* while current climbs — a negative-resistance region that shunts ESD energy at low voltage.
 
-**Method.** The pad was driven with a **current-forced DC sweep** (1 nA → 100 mA, logarithmic, 20 points/decade) rather than a voltage sweep. This choice matters: in the snapback region multiple currents map to a single voltage, so a voltage sweep cannot trace the curve — forcing current and measuring voltage keeps it single-valued. This is the same principle behind TLP (Transmission Line Pulse) characterization used on real ESD hardware.
+**Method.** The pad was driven with a **current-forced DC sweep** (1 nA → 100 mA, logarithmic) rather than a voltage sweep — in the snapback region multiple currents map to a single voltage, so only forcing current keeps the curve traceable. This is the same principle as TLP characterization on real ESD hardware.
 
-**Measured response:**
+| Ipad | 1 nA | 1 µA | 1 mA | 10 mA | 100 mA |
+|---|---|---|---|---|---|
+| **V(pad)** | 2.35 V | 6.05 V | 10.65 V | 14.02 V | 25.25 V |
 
-| Forced pad current | Pad voltage |
-|---|---|
-| 1 nA | 2.35 V |
-| 1 µA | 6.05 V |
-| 1 mA | 10.65 V |
-| 10 mA | 14.02 V |
-| 100 mA | 25.25 V |
+**Finding — the compact model does not snap back.** Pad voltage rises monotonically to 25 V on a 2 V-rated device — physically impossible in real silicon. Spectre even flagged mid-sweep that `Vgd has exceeded the oxide breakdown voltage`, yet the model kept conducting.
 
-**Finding — no snapback occurs.** The pad voltage rises monotonically across eight decades of current, reaching 25 V at 100 mA on a 2 V-rated device — behavior that is physically impossible in real silicon. Spectre itself flagged the contradiction mid-sweep, warning that `Vgd has exceeded the oxide breakdown voltage`, yet the model kept conducting.
+**Root cause — a modeling limitation, not a design or tool defect.** gpdk090's BSIM compact models describe normal MOSFET operation but contain no parasitic-bipolar physics: no avalanche-generated substrate current, no base–emitter forward biasing, no negative-resistance region. No process corner or simulator version adds physics the model card does not implement. This is exactly why production ESD flows use **dedicated ESD device models** rather than standard compact models.
 
-**Root cause — a modeling limitation, not a design or tool defect.** gpdk090's BSIM compact models describe normal MOSFET operation (on/off, saturation, leakage, junction conduction) but contain no parasitic-bipolar physics: no avalanche-generated substrate current, no base–emitter forward biasing, no negative-resistance region. No process corner or simulator version adds physics the model card does not implement.
+---
 
-This is exactly why production ESD flows rely on **dedicated ESD device models** supplied by the foundry — or hand-built macro-models (MOSFET + explicit parasitic NPN + substrate resistance + avalanche current source) — rather than standard compact models. Reaching the edge of the PDK, recognizing it, and identifying the industry-standard path past it is the core result of this experiment.
+## Behavioral macro-model — recovering the missing physics
+
+Rather than stop at the limitation, I built a **behavioral macro-model** to reproduce the mechanism the compact model leaves out. The GGNMOS was augmented with:
+
+- an **explicit parasitic NPN** (collector → PAD, emitter → GND, base → internal substrate node),
+- a **substrate resistance Rsub** from that node to ground, and
+- an **avalanche current source** injecting current from the pad into the substrate node as a function of pad voltage.
+
+Physically, this is the real trigger loop: avalanche current lifts the substrate potential through Rsub, forward-biases the NPN's base, and turns the bipolar on. The avalanche gain (`gav`) and `Rsub` were tuned to bring the loop into conduction.
+
+**Result — the parasitic bipolar triggers.** The macro-model produces a sharp turn-on knee absent from the raw compact model:
+
+| Ipad | 1 µA | 100 µA | 1 mA | 3.98 mA | 100 mA |
+|---|---|---|---|---|---|
+| **V(pad)** | 0.01 V | 0.69 V | 1.64 V | **9.0 V** | ~23 V |
+
+The device stays off until ~4 mA, then the parasitic NPN turns on at a well-defined **trigger knee Vt1 ≈ 9 V** — behavior the gpdk090 compact model cannot produce at all. Final tuning: `gav = 100 µ`, `Rsub = 10 k`.
+
+**Honest scope.** This macro-model captures the *trigger* — the bipolar turn-on the compact model omits. Full negative-resistance *fold-back* (voltage dropping to a holding level Vh) requires the avalanche generation to be a nonlinear, voltage-dependent term, best implemented as a **Verilog-A behavioral source** — the planned next step below.
 
 ---
 
 ## What this project demonstrates
 
-- **Device design** — built the GGNMOS structure with the gate permanently grounded, the defining feature behind how the clamp actually conducts during an ESD event.
-- **Stimulus design** — built a transient testbench using a fast-rise (100 ps) pulse, because transient behavior — not a DC sweep — is what governs ESD survival.
-- **Characterization methodology** — applied a current-forced sweep to probe snapback, the correct technique for negative-resistance regions, and extracted a full I–V dataset across eight decades.
-- **Verification** — drove Spectre transient and DC analyses to clean finishes and extracted pad-voltage responses.
+- **Device design** — built the GGNMOS with the gate permanently grounded, the defining feature behind how the clamp conducts during an ESD event.
+- **Stimulus design** — transient testbench with a fast-rise (100 ps) pulse, because transient behavior — not a DC sweep — governs ESD survival.
+- **Characterization methodology** — applied a current-forced sweep to probe snapback, the correct technique for negative-resistance regions.
+- **Model-limit analysis** — designed an experiment whose outcome exposed exactly what the PDK's compact models can and cannot represent.
+- **Behavioral modeling** — built a parasitic-NPN macro-model and tuned its avalanche feedback to recover the bipolar trigger the compact model omits.
 - **Toolchain debugging** — isolated and fixed a real defect inside the foundry PDK itself (below), not just the design.
-- **Model-limit analysis** — designed an experiment whose outcome exposed what the PDK's compact models can and cannot represent, and mapped the finding to industry practice.
 
 ---
 
@@ -118,12 +134,13 @@ Isolating this meant reading PDK internals and reasoning about how the netlister
 
 ## Roadmap
 
-- [x] **Snapback characterization** — current-forced I–V sweep completed (1 nA → 100 mA); no snapback observed, gpdk090 model limitation identified and documented above.
-- [ ] **Behavioral macro-model** — assemble MOSFET + explicit parasitic NPN + substrate resistance + avalanche source to recover the snapback physics the compact model omits, and extract Vt1 / Vh from it.
-- [ ] **HBM-style stress test** — 100 pF / 1.5 kΩ discharge network for industry-standard Human Body Model qualification stress.
-- [ ] **Physical implementation** — draw the layout with drain ballasting and run **DRC / LVS** toward tapeout readiness.
-- [ ] **Multi-finger scaling** — extend to a fingered device to study current uniformity and per-finger triggering.
+- [x] **Snapback characterization** — completed; compact model shows no snapback, limitation documented above.
+- [x] **Behavioral macro-model** — completed; explicit parasitic NPN recovers the bipolar trigger (Vt1 ≈ 9 V).
+- [ ] **Verilog-A avalanche source** — replace the linear generator with a voltage-dependent (exponential) avalanche term to capture full negative-resistance fold-back and extract the holding voltage Vh.
+- [ ] **HBM stress test** — 100 pF / 1.5 kΩ industry-standard discharge network.
+- [ ] **Layout + DRC / LVS** — physical implementation with drain ballasting.
+- [ ] **Multi-finger scaling** — current uniformity and per-finger triggering.
 
 ---
 
-<sub>PDK model files are proprietary to the foundry and intentionally excluded from this repository. Only original design work — schematics, testbench, and results — is included.</sub>
+<sub>PDK model files are proprietary to the foundry and intentionally excluded from this repository. Only original design work — schematics, testbenches, and results — is included.</sub>
