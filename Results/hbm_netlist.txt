@@ -1,0 +1,46 @@
+// Generated for: spectre
+// Generated on: Jul 16 18:43:42 2026
+// Design library name: ESD_Protection_gpdk090
+// Design cell name: GGNMOS_ESD_HBM_tb
+// Design view name: schematic
+simulator lang=spectre
+global 0
+parameters v=0 rsub=10k
+include "/home/work/gpdk090_v4.6/libs.oa22/gpdk090/../../models/spectre/gpdk090.scs" section=NN
+
+// Library name: ESD_Protection_gpdk090
+// Cell name: GGNMOS_ESD_macro
+// View name: schematic
+subckt GGNMOS_ESD_macro GND PAD
+    M0 (net9 GND GND GND) gpdk090_nmos2v w=(30u) l=280n as=6.3p ad=5.4p \
+        ps=37.92u pd=30.36u m=(1)*(8) simM=(1)*(8)
+    I3 (PAD GND) avalanche_gen Vt1=9 It1=0.004 Vh=5 Ron=20 Ifold=0.003
+    R0 (sub GND) resistor r=rsub
+    Q1 (net9 sub GND) gpdk090_npn area=0.36 m=4
+ends GGNMOS_ESD_macro
+// End of subcircuit definition.
+
+// Library name: ESD_Protection_gpdk090
+// Cell name: GGNMOS_ESD_HBM_tb
+// View name: schematic
+I0 (0 net1) GGNMOS_ESD_macro
+V0 (net2 0) vsource type=pulse val0=0 val1=2000v period=1u delay=1n \
+        rise=10n fall=150n width=1n
+R0 (net2 net1) resistor r=1.5K
+C0 (net1 0) capacitor c=100p
+simulatorOptions options reltol=1e-3 vabstol=1e-6 iabstol=1e-12 temp=27 \
+    tnom=27 scalem=1.0 scale=1.0 gmin=1e-12 rforce=1 maxnotes=5 maxwarns=5 \
+    digits=5 cols=80 pivrel=1e-3 sensfile="../psf/sens.output" \
+    checklimitdest=psf 
+tran tran stop=500n errpreset=conservative maxstep=1n cmin=1f \
+    write="spectre.ic" writefinal="spectre.fc" method=gear2 \
+    annotate=status maxiters=50 
+finalTimeOP info what=oppoint where=rawfile
+modelParameter info what=models where=rawfile
+element info what=inst where=rawfile
+outputParameter info what=output where=rawfile
+designParamVals info what=parameters where=rawfile
+primitives info what=primitives where=rawfile
+subckts info what=subckts where=rawfile
+saveOptions options save=allpub
+ahdl_include "/home/work/ESD_Protection_gpdk090/avalanche_gen/veriloga/veriloga.va"
