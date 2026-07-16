@@ -23,7 +23,7 @@
 
 > Every chip needs ESD protection, or it doesn't survive its first handshake with reality.
 
-A **Gate-Grounded NMOS (GGNMOS)** primary ESD clamp — designed, simulated, characterized, and debugged from a blank schematic in Cadence Virtuoso. Along the way: a real PDK bug found and fixed, a PDK modeling limitation exposed by experiment, and a behavioral macro-model built to recover the physics the compact model leaves out.
+A **Gate-Grounded NMOS (GGNMOS)** primary ESD clamp — designed, simulated, characterized, and debugged from a blank schematic in Cadence Virtuoso. Along the way: a real PDK bug found and fixed, a PDK modeling limitation exposed by experiment, a behavioral macro-model built to recover the missing bipolar physics, a Verilog-A clamp that captures full negative-resistance fold-back, and a 2 kV HBM transient stress test.
 
 ---
 
@@ -42,9 +42,9 @@ The GGNMOS is the **workhorse primary ESD clamp** used on real I/O pads in produ
 | **Tool** | Cadence Virtuoso IC6.1.7 |
 | **Simulator** | Spectre Circuit Simulator |
 | **PDK / Node** | gpdk090 — 90 nm |
-| **Analyses** | Transient (ESD-style pulse) · DC (current-forced snapback sweep) |
-| **Device** | Gate-Grounded NMOS primary clamp + behavioral macro-model |
-| **Status** | Transient verified · snapback characterized · macro-model recovers parasitic-NPN trigger (Vt1 ≈ 9 V) |
+| **Analyses** | Transient (ESD-style pulse, HBM) · DC (current-forced snapback sweep) |
+| **Device** | Gate-Grounded NMOS primary clamp + behavioral macro-model + Verilog-A snapback clamp |
+| **Status** | Transient verified · snapback fully characterized · Verilog-A clamp captures negative-resistance fold-back (Vt1 = 9.0 V, Vh ≈ 5.35 V) · 2 kV HBM transient verified |
 
 ---
 
@@ -57,6 +57,8 @@ The GGNMOS is the **workhorse primary ESD clamp** used on real I/O pads in produ
 | **[Snapback testbench](Schematics/GGNMOS_ESD_snapback_tb_schematic.png)** | DC current source forcing current into the PAD node — the correct stimulus for tracing a snapback I–V curve. |
 | **[Macro-model cell](Schematics/GGNMOS_ESD_macro_schematic.png)** | GGNMOS with an **explicit parasitic NPN + substrate resistance (Rsub) + avalanche current source** — a behavioral model of the bipolar mechanism the compact model omits. |
 | **[Macro-model testbench](Schematics/GGNMOS_ESD_macro_tb_schematic.png)** | Current-forced testbench driving the macro-model to extract its trigger characteristic. |
+| **[Behavioral clamp schematic](Schematics/schematic_behavioural_clamp.png)** | Macro rewired so PAD is driven solely through the Verilog-A `avalanche_gen` element — isolates the behavioral clamp's I–V for direct characterization. |
+| **[HBM testbench](Schematics/HBM_testbench_schematic.png)** | 100 pF / 1.5 kΩ human-body-model discharge network (pulse source + R + C) applied to the PAD node of the same behavioral clamp. |
 
 ## Results
 
@@ -65,9 +67,14 @@ The GGNMOS is the **workhorse primary ESD clamp** used on real I/O pads in produ
 | **[PAD voltage waveform](Results/GGNMOS_ESD_Pad_Voltage_Waveform.jpg)** | Pad-node response to an 8 V, 100 ps-rise transient stress pulse. |
 | **[Spectre run log](Results/ESD_run_log_8V.txt)** | Full transient simulation log — clean run, zero errors. |
 | **[Snapback I–V sweep](Results/GGNMOS_snapback_IV_sweep.png)** | Compact-model pad voltage vs. forced current, 1 nA → 100 mA. |
+| **[Snapback log](Results/GGNMOS_ESD_snapback_log.txt)** | Snapback sweep simulation log. |
 | **[Macro-model I–V sweep](Results/GGNMOS_macro_IV_cadence.png)** | Macro-model characteristic showing the parasitic-NPN trigger knee at ≈ 9 V. |
 | **[Macro-model data](Results/macro_IV_data.txt)** | Extracted I–V data points. |
 | **[Macro-model Spectre log](Results/macro_spectre.log)** | Full macro-model simulation log. |
+| **[Verilog-A snapback I–V](Results/VerilogA_snapback_IV.png)** | Full negative-resistance fold-back — Vt1 = 9.0 V @ 3.98 mA, folding to Vh ≈ 5.35 V @ 20.4 mA. |
+| **[Verilog-A netlist](Results/netlist_snapback.txt)** | Spectre netlist confirming the piecewise `V(I)` clamp element and DC sweep setup. |
+| **[HBM transient waveform](Results/HBM_Transient.png)** | V(PAD) under a 2 kV HBM pulse — peak 30.31 V @ 16.0 ns, holding shoulder 5.32 V @ 161.1 ns. |
+| **[HBM netlist](Results/hbm_netlist.txt)** | Transient netlist — 100 pF/1.5 kΩ HBM network with the convergence settings needed to solve through the clamp's sharp trigger. |
 
 ---
 
@@ -105,30 +112,75 @@ Physically, this is the real trigger loop: avalanche current lifts the substrate
 
 The device stays off until ~4 mA, then the parasitic NPN turns on at a well-defined **trigger knee Vt1 ≈ 9 V** — behavior the gpdk090 compact model cannot produce at all. Final tuning: `gav = 100 µ`, `Rsub = 10 k`.
 
-**Honest scope.** This macro-model captures the *trigger* — the bipolar turn-on the compact model omits. Full negative-resistance *fold-back* (voltage dropping to a holding level Vh) requires the avalanche generation to be a nonlinear, voltage-dependent term, best implemented as a **Verilog-A behavioral source** — the planned next step below.
+**Honest scope at this stage.** This macro-model captures the *trigger* — the bipolar turn-on the compact model omits. It does **not** fold back: every element in the loop (the avalanche source and the parasitic NPN) has positive differential resistance, so no amount of parameter tuning can produce negative resistance. That limit — proven empirically across multiple tuning attempts — is exactly what motivated the next stage.
+
+---
+
+## Verilog-A avalanche source — full snapback recovered
+
+The macro-model's structural limit called for a different approach: instead of trying to make negative resistance *emerge* from device-level elements, the Verilog-A clamp *specifies* the full snapback characteristic directly as a piecewise, current-driven voltage source:
+V(I) = Vt1 · (I / It1)                                              for I < It1
+V(I) = Vh + (Vt1 − Vh) · exp(−(I − It1)/Ifold) + Ron · (I − It1)     for I ≥ It1
+
+This form was chosen deliberately: it is **single-valued as a function of current**, so under the project's current-forced DC sweep it converges cleanly with no homotopy or gmin-stepping required — the fold-back falls straight out of the equation.
+
+**Extracted from the swept I–V curve:**
+
+| Quantity | Value |
+|---|---|
+| Trigger point (Vt1, It1) | **9.0 V @ 3.98 mA** |
+| Holding point (Vh) | **5.35 V @ 20.4 mA** |
+
+The curve rises linearly to the trigger point, **folds back** as current continues to climb — voltage *dropping* while current rises, the genuine negative-resistance signature of snapback — then resumes rising along a fixed 20 Ω on-resistance. This closes the gap the macro-model could describe but not reach.
+
+**Honest scope.** This is a *behavioral* specification of snapback, not an emergent one — the same approach used in system-level ESD verification, where physical device models aren't available either. Reaching a fully emergent fold-back would require modeling high-current bipolar beta collapse explicitly, a natural extension beyond this project's current scope.
+
+---
+
+## HBM 2 kV stress test — transient verification
+
+With the clamp's DC snapback characterized, the same clamp (unchanged parameters: Vt1 = 9.0 V, Vh ≈ 5.35 V) was stressed with a **2 kV Human Body Model pulse** — the industry-standard 100 pF / 1.5 kΩ discharge network — to verify behavior under a realistic sub-microsecond transient rather than a slow DC sweep.
+
+**Setup.** A 2000 V pulse (10 ns rise, 150 ns fall) drives a 1.5 kΩ series resistor into a 100 pF pad capacitance, applied directly to the clamp's PAD node. Transient analysis ran the full 500 ns event.
+
+**Result:**
+
+| Marker | Time | V(PAD) |
+|---|---|---|
+| Peak overshoot | 16.0 ns | **30.31 V** |
+| Holding shoulder | 161.1 ns | **5.32 V** |
+
+The pad rises fast, overshoots, then decays through a clear holding shoulder at **5.32 V — matching the DC-extracted Vh (5.35 V) almost exactly**, confirming the clamp engages consistently in both the DC and transient domains with no re-tuning.
+
+**Honest scope.** The pad briefly exceeds gate-oxide breakdown before the clamp brings it down. This reflects a genuine limit of a behavioral V(I) model: it cannot reproduce the fast, hard current-sinking of physical bipolar snapback fast enough to fully arrest a sub-nanosecond HBM edge. True HBM survival verification requires the physical device — layout, extracted parasitics, and ultimately silicon — the natural next step.
+
+**Convergence note.** The sharp behavioral transition at trigger caused the transient solver to fail mid-run (`Top 10 Residue too large`) under default settings. Resolved with `cmin = 1f` (tiny node-to-ground capacitance), `method = gear2`, and `maxstep = 1n` — a deliberate numerical fix, not a lucky default.
 
 ---
 
 ## What this project demonstrates
 
 - **Device design** — built the GGNMOS with the gate permanently grounded, the defining feature behind how the clamp conducts during an ESD event.
-- **Stimulus design** — transient testbench with a fast-rise (100 ps) pulse, because transient behavior — not a DC sweep — governs ESD survival.
-- **Characterization methodology** — applied a current-forced sweep to probe snapback, the correct technique for negative-resistance regions.
-- **Model-limit analysis** — designed an experiment whose outcome exposed exactly what the PDK's compact models can and cannot represent.
-- **Behavioral modeling** — built a parasitic-NPN macro-model and tuned its avalanche feedback to recover the bipolar trigger the compact model omits.
-- **Toolchain debugging** — isolated and fixed a real defect inside the foundry PDK itself (below), not just the design.
+- **Stimulus design** — transient testbenches with fast-rise pulses (100 ps ESD pulse, 10 ns HBM edge), because transient behavior — not a DC sweep — governs ESD survival.
+- **Characterization methodology** — applied current-forced sweeps to probe snapback, the correct technique for negative-resistance regions.
+- **Model-limit analysis** — designed experiments whose outcomes exposed exactly what the PDK's compact models can and cannot represent, twice: once for the compact model, once for the macro-model's structural limits.
+- **Behavioral modeling** — built a parasitic-NPN macro-model, then a Verilog-A clamp with a deliberately single-valued `V(I)` formulation, to recover trigger and full fold-back respectively.
+- **Numerical debugging** — diagnosed and resolved a transient convergence failure at the clamp's sharp trigger transition using `cmin`, `gear2`, and step-size control.
+- **Toolchain debugging** — isolated and fixed a real defect inside the foundry PDK itself, and separately diagnosed a silent CDF-parameter-override issue that was masking Verilog-A edits (below).
 
 ---
 
-## Debugging highlight
+## Debugging highlights
 
-Midway through bring-up, Spectre threw repeated `Model 'X' has already been defined` errors originating **inside the PDK's own resistor model file** — not the design.
+**PDK resistor model duplication.** Midway through bring-up, Spectre threw repeated `Model 'X' has already been defined` errors originating **inside the PDK's own resistor model file** — not the design.
 
-**Root cause:** the foundry's `gpdk090.scs` includes the same resistor sub-model once per process corner (NN, SS, SF, FS, FF, each with a high-performance variant — ten includes total). This Spectre build parsed every corner's include instead of scoping to the selected corner, creating duplicate definitions and aborting the run.
+Root cause: the foundry's `gpdk090.scs` includes the same resistor sub-model once per process corner (NN, SS, SF, FS, FF, each with a high-performance variant — ten includes total). This Spectre build parsed every corner's include instead of scoping to the selected corner, creating duplicate definitions and aborting the run.
 
-**Fix:** extracted a single clean process-corner section into a standalone model file and repointed the simulator's Model Library Setup at it — restoring a clean, single-definition environment **without touching the device design.**
+Fix: extracted a single clean process-corner section into a standalone model file and repointed the simulator's Model Library Setup at it — restoring a clean, single-definition environment **without touching the device design.**
 
-Isolating this meant reading PDK internals and reasoning about how the netlister and simulator consume corner sections — the kind of unscripted problem-solving that separates *ran a tutorial* from *made unfamiliar tools actually work*.
+**Silent CDF override.** A Verilog-A parameter edited directly in the module source appeared to have no effect on simulation results across several re-runs. Tracing it back through the instance's CDF properties (`Edit Object Properties → veriloga` filter) revealed the instance carried its own cached parameter values that silently overrode the module's defaults every time it netlisted. Fix: edited the values on the instance directly rather than the source, and confirmed via the generated netlist — the actual ground truth for what simulates — rather than trusting the GUI dialog.
+
+Isolating both of these meant reading PDK internals and netlist output directly, reasoning about how the netlister, CDF cache, and simulator interact — the kind of unscripted problem-solving that separates *ran a tutorial* from *made unfamiliar tools actually work*.
 
 ---
 
@@ -136,10 +188,10 @@ Isolating this meant reading PDK internals and reasoning about how the netlister
 
 - [x] **Snapback characterization** — completed; compact model shows no snapback, limitation documented above.
 - [x] **Behavioral macro-model** — completed; explicit parasitic NPN recovers the bipolar trigger (Vt1 ≈ 9 V).
-- [ ] **Verilog-A avalanche source** — replace the linear generator with a voltage-dependent (exponential) avalanche term to capture full negative-resistance fold-back and extract the holding voltage Vh.
-- [ ] **HBM stress test** — 100 pF / 1.5 kΩ industry-standard discharge network.
-- [ ] **Layout + DRC / LVS** — physical implementation with drain ballasting.
-- [ ] **Multi-finger scaling** — current uniformity and per-finger triggering.
+- [x] **Verilog-A avalanche source** — completed; piecewise `V(I)` clamp captures full negative-resistance fold-back, Vt1 = 9.0 V / Vh = 5.35 V extracted.
+- [x] **HBM stress test** — completed; 2 kV, 100 pF / 1.5 kΩ transient verified against the same DC-characterized clamp.
+- [ ] **Layout + DRC / LVS** *(future work)* — physical implementation with drain ballasting.
+- [ ] **Multi-finger scaling** *(future work)* — current uniformity and per-finger triggering.
 
 ---
 
